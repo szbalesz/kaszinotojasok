@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A vízió dokumentum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <h1 class="kiemelt">Kaszinótojások – Kaszinó applikáció tervezése</h1>
+        <p>Miskolci Egyetem – Szoftvertechnológia (GEIAL314-B2) Vízió dokumentum</p>
+
+        <section id="bevezetes">
+            <h2>1. Bevezetés</h2>
+            <p> 
+            A projekt célja egy online kaszinóalkalmazás megtervezése és fejlesztése, amely lehetőséget biztosít a felhasználók számára különböző kaszinójátékok online elérésére. Az alkalmazás célja, hogy a hagyományos kaszinók játékélményét digitális környezetben tegye elérhetővé, könnyen kezelhető és átlátható felületen keresztül.
+            Az alkalmazás munkaneve [.........], központi elemei a különböző kaszinójátékok, a felhasználói fiókok kezelése, valamint a játékosokhoz kapcsolódó adatok és eredmények nyilvántartása. A felhasználók egy egységes felületen keresztül érhetik el a rendelkezésre álló játékokat, megtekinthetik saját adataikat, és nyomon követhetik a játék során elért eredményeiket.
+            A fejlesztés során fontos szempont a könnyű kezelhetőség, az áttekinthető megjelenés és a megbízható működés. A felület kialakításánál arra törekszünk, hogy a felhasználók különösebb előzetes ismeretek nélkül is eligazodjanak a rendszerben.
+            A dokumentum célja az alkalmazás alapvető céljainak, tervezett lehetőségeinek, felhasználói körének és működési kereteinek bemutatása. A Vízió dokumentum kiindulási alapot biztosít a későbbi követelményelemzési és fejlesztési munkákhoz.
+            </p>
+
+        </section>
+
+        <section id="problema">
+            <h2>2. A probléma megfogalmazása</h2>
+            <p>Az internet és a digitális szórakozási lehetőségek fejlődésével egyre több olyan alkalmazás jelenik meg, amely különböző játékokat tesz elérhetővé a felhasználók számára.
+            Ezek közé tartoznak az online kaszinójátékokat kínáló rendszerek is, amelyek a hagyományos kaszinókban megtalálható játékok digitális változatait biztosítják.
+            Az ilyen alkalmazások népszerűségét többek között az egyszerű elérhetőség, a változatos játékkínálat és az interaktív felhasználói élmény adja. Ugyanakkor a valódi pénzzel működő online kaszinók használata pénzügyi kockázatokkal, jogi követelményekkel és egyéb korlátozásokkal járhat.
+            </p>
+
+            <p>A tervezett alkalmazásban a felhasználók virtuális zsetonokkal vehetnek részt a játékokban. Ezek a zsetonok kizárólag a rendszeren belüli játékot szolgálják, valódi pénzre nem válthatók,
+            és nem képviselnek pénzügyi követelést. A játékosok így megismerkedhetnek a különböző kaszinójátékok működésével, kipróbálhatják a játékmechanizmusokat,
+            és szórakoztató környezetben követhetik nyomon az eredményeiket. A rendszer nem fogad valódi pénzes téteket, nem kezel befizetéseket vagy pénzkifizetéseket, és nem célja a pénznyerés biztosítása.
+            </p>
+
+            <p>A probléma fontos része a felhasználói élmény. Egy online kaszinófelület akkor használható megfelelően, ha a játékok könnyen megtalálhatók, a kezelőfelület áttekinthető, 
+            és a felhasználók gyorsan megértik az alkalmazás működését. Egy rosszul felépített rendszerben a navigáció nehézkes lehet, a játékok szabályai nem feltétlenül egyértelműek,
+            illetve a felhasználók számára nehézséget okozhat az egyéni eredményeik követése. A [.........] fejlesztésének ezért fontos célja egy egységes, logikusan felépített felület kialakítása,
+            amelyen a játékok kiválasztása, elindítása és használata egyszerűen elvégezhető.
+            </p>
+
+            <p>További megoldandó feladat a felhasználói adatok és a játékállapotok megfelelő kezelése. Amennyiben az alkalmazás felhasználói fiókokat biztosít,
+            szükséges a regisztrációhoz és a bejelentkezéshez kapcsolódó adatok kezelése, valamint a felhasználókhoz tartozó virtuális zsetonegyenleg és játékeredmények nyilvántartása.
+            A rendszernek gondoskodnia kell arról, hogy az egyes felhasználók adatai elkülönüljenek egymástól, és más felhasználó ne férhessen hozzá illetéktelenül a személyes adatokhoz vagy a fiókhoz kapcsolódó információkhoz.
+            A biztonságos működés érdekében figyelmet kell fordítani a hozzáférések kezelésére, a hibás műveletek megelőzésére és a játék közben keletkező adatok következetes tárolására.
+            </p>
+            
+            <p>A [.........] esetében lényeges követelmény a virtuális zsetonok működésének egyértelmű meghatározása is. Az alkalmazásnak következetesen kell kezelnie a játék megkezdésekor felhasznált zsetonokat és a játék végén keletkező eredményeket.
+            A zsetonegyenleg nem válhat negatívvá, és a játék eredményének rögzítésekor el kell kerülni az olyan hibákat, amelyek helytelen egyenleghez vezetnének. A játékoknak a meghatározott szabályok szerint kell működniük,
+            hogy a felhasználók számára kiszámítható és követhető legyen a játékmenet.
+            </p>
+
+            <p>A rendszer kialakításánál a hozzáférhetőség és a különböző eszközök támogatása is fontos szempont. A felhasználók eltérő eszközökről, például asztali számítógépről, laptopról,
+            táblagépről vagy okostelefonról is szeretnék használni az alkalmazást. A felületnek ezért lehetőség szerint alkalmazkodnia kell a különböző képernyőméretekhez, a szövegeknek jól olvashatónak,
+            a kezelőelemeknek pedig könnyen használhatónak kell lenniük. Az alkalmazásnak megfelelő internetkapcsolat mellett stabilan kell működnie, és a felhasználói műveletekre elfogadható időn belül kell reagálnia.
+            </p>
+
+            <p>Összességében a [.........] célja egy olyan online kaszinójellegű szórakoztató alkalmazás létrehozása, amely egyetlen felületen kínál többféle játékot,
+            virtuális zsetonokkal működik, és lehetőséget biztosít a játékosoknak eredményeik követésére. A fejlesztés során meg kell oldani a könnyű kezelhetőség,
+            a stabil működés, az adatok megfelelő kezelése és a játéklogika következetességének problémáit. A projekt akkor tekinthető sikeresnek, ha az alkalmazás egyszerűen használható,
+            a játékok az előre meghatározott szabályok szerint működnek, a felhasználók egyértelműen megértik a virtuális zsetonok szerepét, és a rendszer a kitűzött pénztét nélküli szórakoztatási célnak megfelelően működik.
+            </p>
+
+        </section>
+
+
+        <section id="termek_helye">
+            <h2>3. A termék helye</h2>
+            <p>A [.........] egy online kaszinójellegű szórakoztató alkalmazás, amely lehetőséget biztosít a felhasználók számára különböző kaszinójátékok kipróbálására virtuális zsetonok segítségével. A rendszer célja,
+            hogy modern, letisztult és könnyen kezelhető felületen tegye elérhetővé ezeket a játékokat, valódi pénz használata és pénzügyi kockázat nélkül.
+            </p>
+
+            <p>Az alkalmazás olyan felhasználóknak készül, akik érdeklődnek a kaszinójátékok iránt, de nem szeretnének valódi pénzzel kockázatot vállalni.
+            A rendszer lehetőséget nyújt a játékok szabályainak megismerésére, különböző stratégiák kipróbálására és a szabadidő szórakoztató eltöltésére.
+            </p>
+
+            <p>Az alkalmazás webes szórakoztató alkalmazások és a kaszinószimulátorok kategóriájába tartozik. Megfelelő kialakítás esetén számítógépről, laptopról és okostelefonról is használható. Legfontosabb előnye, hogy egyetlen felületen biztosít hozzáférést többféle játékhoz,
+            miközben nincs szükség befizetésre vagy fizetési adatok megadására.
+            </p>
+
+            <p>Alternatívái közé tartoznak a már működő online kaszinók, az ingyenes kaszinójátékokat kínáló weboldalak, valamint az egyes játékokat külön-külön biztosító alkalmazások.
+            A valódi pénzes online kaszinók gyakran széles játékkínálattal rendelkeznek, azonban használatuk pénzügyi kockázatokkal és további követelményekkel járhat mint például szigorú és hosszadalmas regisztráció, életkor igazolás. Az ingyenes játékoldalak előnye,
+            hogy pénztét nélkül is egyszerűen kipróbálhatók, de egyes esetekben elavult megjelenésűek, túlzsúfoltak. A különálló alkalmazások pedig megnehezíthetik a különböző játékok közötti váltást.
+            </p>
+
+            <p>A [.........] legfontosabb sajátossága a pénzügyi kockázat nélküli játék és a modern felhasználói felület kombinációja. A fejlesztés során kiemelt szerepet kap a letisztult megjelenés,
+            az egyszerű navigáció és az egységes kialakítás. A cél, hogy a felhasználók gyorsan megtalálják a kívánt játékokat, és könnyen eligazodjanak az alkalmazásban. A különböző játékok egyetlen közös felületen lesznek elérhetők,
+            így nem szükséges több weboldalt vagy alkalmazást használni. A virtuális zsetonok lehetővé teszik a játékok kipróbálását anélkül, hogy a felhasználók valódi pénzt kockáztatnának.
+            Ezáltal a [.........] egy egyszerűen használható, korszerű és ingyenes alternatívát kínál azok számára, akik elsősorban a kaszinójátékok élményét keresik, nem pedig a valódi pénzes szerencsejátékot.
+            </p>
+
+        </section>
+
+        <section id="felhasznaloi_kornyezet">
+            <h2>4. Felhasználói környezet</h2>
+            <p>A projekt egy webes alkalmazásként készül, amely internetkapcsolaton keresztül, webböngészőből lesz elérhető. Elsődlegesen számítógépeken és laptopokon történő használatra készül,
+            de a cél a mobiltelefonokon való megfelelő megjelenés biztosítása is. A későbbiekben a rendszer továbbfejleszthető újabb eszközök és platformok támogatásával.
+            </p>
+
+            <p>A felhasználók száma a projekt jelenlegi szakaszában pontosan nem határozható meg. Mivel az alkalmazás elsősorban bemutatási és szórakoztatási céllal készül,
+            kezdetben várhatóan kevés felhasználó használja majd egy időben. A rendszer kialakításánál azonban célszerű figyelembe venni a későbbi felhasználószám növekedésének lehetőségét is.
+            </p>
+
+            <p>Egy felhasználó várhatóan néhány perctől akár több óráig is használhatja az alkalmazást,
+            attól függően, hogy mennyi időt szeretne a játékokkal tölteni. A használat időtartama nem kötött, a felhasználók szabadon választhatják meg a játékra szánt időt.
+            </p>
+
+            <p>A rendszer használatához különleges hardvereszközökre nincs szükség.
+            Az alkalmazás nem igényel valódi pénzt kezelő fizetési rendszert vagy banki szolgáltatásokkal való integrációt, mivel kizárólag virtuális zsetonokkal működik.
+            A fejlesztés jelenlegi tervei alapján az alkalmazásnak más rendszerekkel való közvetlen integrációra nincs szüksége.
+            A későbbi bővítések során felmerülhet például külső adatbázis vagy felhasználói azonosítást biztosító szolgáltatás alkalmazása, amennyiben a végleges funkciók ezt indokolják.
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
