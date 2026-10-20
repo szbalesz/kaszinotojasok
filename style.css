@@ -63,3 +63,210 @@ th {
   background-color: #222;
   color: white;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+h3 {
+  color: var(--legacy-blurple);
+  margin: 18px 0 8px;
+}
+
+p {
+  margin: 9px 0;
+}
+
+.page {
+  position: relative;
+  padding-bottom: 35px;
+  margin-bottom: 35px;
+}
+
+.page-number {
+  text-align: right;
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+.toc {
+  columns: 2;
+  column-gap: 28px;
+}
+
+.toc li {
+  break-inside: avoid;
+}
+
+.small {
+  font-size: 0.9em;
+}
+
+.cover {
+  background: white;
+  color: black;
+  font-family: "Times New Roman", serif;
+  padding: 25px;
+  line-height: normal;
+}
+
+.cover .meta {
+  font-size: 22pt;
+  margin-bottom: 0;
+}
+
+.cover h1 {
+  font-size: 26pt;
+  text-align: center;
+  margin: 60px 0 45px;
+}
+
+.cover .teacher {
+  text-align: center;
+  font-size: 22pt;
+}
+
+.cover .label {
+  font-size: 16pt;
+}
+
+.cover table {
+  width: 90%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-family: "Times New Roman", serif;
+}
+
+.cover td {
+  border: 1px solid black;
+  padding: 4px;
+  font-size: 12pt;
+}
+
+.cover .date {
+  text-align: right;
+  font-size: 14pt;
+  margin-top: 24px;
+}
+
+@page {
+  size: A4;
+  margin: 25mm;
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+    padding: 0;
+    font-size: 10.5pt;
+    line-height: 1.2;
+  }
+
+  .container {
+    max-width: none;
+    width: auto;
+    padding: 0;
+    background: white;
+  }
+
+  .page {
+    break-after: page;
+    page-break-after: always;
+    min-height: 246mm;
+    margin: 0;
+    padding: 0 0 9mm;
+  }
+
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    font-size: 9pt;
+  }
+
+  h2 {
+    font-size: 16pt;
+    margin: 0 0 10px;
+    color: black;
+    border-color: #5865F2;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    color: black;
+    margin: 11px 0 5px;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  p {
+    margin: 6px 0;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  table {
+    margin: 10px 0;
+    font-size: 9pt;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  th {
+    background: #e6e8ef;
+    color: black;
+  }
+
+  tr {
+    break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  a {
+    color: #222;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+  }
+
+  .cover {
+    padding: 0 0 9mm;
+  }
+
+  .cover .meta {
+    margin-top: 10px;
+  }
+
+  .cover h1 {
+    color: black;
+  }
+
+  .cover .teacher {
+    margin: 12px 0 20px;
+  }
+
+  .cover table {
+    margin: 12px 0;
+  }
+
+  .cover td {
+    padding: 4px;
+  }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszinótojások – SRS 1.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="page" id="tortenet">
+      <h2>Történet</h2>
+      <p>Az 1.0 változat a teljes SRS munkaváltozata. Az alábbi öt sor a dokumentum részeinek kiosztását rögzíti. A
+        szerző oszlop a kijelölt felelőst jelöli; a tényleges elkészítési és ellenőrzési időpontok a munkavégzés után
+        vezetendők át.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Dátum</th>
+            <th>Verzió</th>
+            <th>Leírás</th>
+            <th>Szerző</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026. 10. 20.</td>
+            <td>1.0</td>
+            <td>1–2. és 13. fejezet: célok, környezet, fogalmak, melléklet.</td>
+            <td>Varga Ákos</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 id="tartalom">Tartalomjegyzék</h2>
+      <ul class="toc">
+        <li><a href="#bevezetes">1. Bevezetés</a></li>
+        <li><a href="#attekintes">2. Áttekintés</a></li>
+        <li><a href="#funkciok">3. A rendszer funkciói</a></li>
+        <li><a href="#alapkov">3.1. Alapkövetelmények</a></li>
+        <li><a href="#ucfiok">3.2. Fiók és játékválasztás</a></li>
+        <li><a href="#ucjatek">3.3. Játékmenet és elszámolás</a></li>
+        <li><a href="#ucadat">3.4. Adatok és kilépés</a></li>
+        <li><a href="#hasznalhatosag">4. Használhatóság</a></li>
+        <li><a href="#megbizhatosag">5. Megbízhatóság</a></li>
+        <li><a href="#teljesitmeny">6. Teljesítmény</a></li>
+        <li><a href="#tamogatottsag">7. Támogatottság</a></li>
+        <li><a href="#korlatozasok">8. Tervezési korlátozások</a></li>
+        <li><a href="#help">9. On-line dokumentáció és Help rendszer</a></li>
+        <li><a href="#komponensek">10. Felhasznált kész komponensek</a></li>
+        <li><a href="#interfeszek">11. Interfészek</a></li>
+        <li><a href="#szabvanyok">12. Alkalmazott szabványok</a></li>
+        <li><a href="#mellekletek">13. Mellékletek</a></li>
+      </ul>
+    </section>
+
+    <section class="page">
+      <h2 id="bevezetes">1. Bevezetés</h2>
+      <h3>1.1. Cél és érvényesség</h3>
+      <p>A dokumentum a Kaszinótojások csapat kaszinójellegű webalkalmazásának szolgáltatásait, működési szabályait és
+        minőségi követelményeit rögzíti. A fejlesztők számára a tervezéshez, a tesztelők számára az ellenőrzéshez, az
+        oktató számára a vállalt hatókör értékeléséhez biztosít alapot.</p>
+      <p>Az alkalmazás kizárólag virtuális zsetonokkal működik. Nem fogad valódi pénzt, nem biztosít zsetonvásárlást,
+        pénzkifizetést vagy pénzre váltást. A cél a játékok megismerése és szórakoztató kipróbálása.</p>
+      <h3>1.2. A követelmények állapota</h3>
+      <p>Az FK jel funkcionális, a H használhatósági, az M megbízhatósági, a T teljesítménykövetelményt azonosít. A
+        számszerű célértékek az SRS javasolt elfogadási feltételei, nem már elvégzett mérések. A vízióban feltételes
+        fiókkezelés és tartós előzménytárolás itt is feltételes: csak a modul vállalásakor kötelező.</p>
+      <h3>1.3. Kapcsolódó dokumentumok</h3>
+      <p>Kiindulási alap a csapat Vízió dokumentuma és a tantárgy SRS mintája. A formai követelmények forrása az oktatói
+        dokumentumformátum-leírás. A forrásjegyzék a 13. fejezetben található. A végleges terméknév még meghatározandó;
+        a Kaszinótojások a csapat neve.</p>
+      <h2 id="attekintes">2. Áttekintés</h2>
+      <h3>2.1. Termékkörnyezet és fő szolgáltatások</h3>
+      <p>A rendszer webböngészőből elérhető, önálló szórakoztató alkalmazás. A felhasználó megtekinti a kínálatot és a
+        szabályokat, tétet választ, lejátszik egy kört, majd ellenőrzi az eredményt és egyenlegét. A játéklogika és a
+        zsetonkezelés közös alkalmazáson belül működik. Banki integráció nem szükséges.</p>
+      <h3>2.2. Aktorok</h3>
+      <ul>
+        <li><strong>Látogató:</strong> be nem jelentkezett személy; megtekinti a kínálatot, és a fiókmodulban
+          regisztrálhat vagy beléphet.</li>
+        <li><strong>Játékos:</strong> a játékfunkciókat használó személy; játékállapot és egyenleg tartozik hozzá. Nem
+          feltétlenül rendelkezik fiókkal.</li>
+        <li><strong>Regisztrált játékos:</strong> a Játékos specializált szerepe, saját fiókhoz kapcsolt állapottal és
+          feltételes előzménylistával.</li>
+      </ul>
+      <h3>2.3. Feltételezések és határok</h3>
+      <p>A használathoz böngésző, engedélyezett JavaScript és internetkapcsolat áll rendelkezésre. Elsődleges cél a
+        számítógépes használat, kiegészítve mobil nézettel. A konkrét játékok, kezdőzsetonok és megőrzési szabályok a
+        13.2. pontban véglegesítendők. Többjátékos asztal, chat, ranglista és adminisztrátori felület nincs a jelen
+        hatókörben.</p>
+    </section>
+
+    <section class="page">
+      <h2 id="funkciok">3. A rendszer funkciói</h2>
+      <h3 id="alapkov">3.1. Alapkövetelmények</h3>
+      
+    </section>
+
+    <section class="page">
+      <h2 id="ucfiok">3.2. Fiók és játékválasztás</h2>
+      
+    </section>
+
+    <section class="page">
+      <h2 id="ucjatek">3.3. Játékmenet és elszámolás</h2>
+     
+    </section>
+
+    <section class="page">
+      <h2 id="ucadat">3.4. Adatok és kilépés</h2>
+      
+    </section>
+
+    <section class="page">
+      <h2 id="hasznalhatosag">4. Használhatóság</h2>
+    </section>
+
+    <section class="page">
+      <h2 id="megbizhatosag">5. Megbízhatóság</h2>
+
+    </section>
+
+    <section class="page">
+      <h2 id="teljesitmeny">6. Teljesítmény</h2>
+      <h3>6.1. Mérési feltételek</h3>
+      <p>A célértékek demonstrációs alkalmazásra vonatkoznak. A vizsgálat referencia-kliense legalább két
+        processzormagos, 4 GB memóriás számítógép, 1366 × 768 képpontos nézettel. A hálózat legalább 20 Mbit/s, a
+        szerverhez mért késleltetés legfeljebb 100 ms legyen. A tényleges gép-, böngésző- és szerveradatok a mérési
+        jegyzőkönyv részei.</p>
+      <p>Válaszidőn a művelet kezdeményezésétől a használható felület megjelenéséig tartó idő értendő. A 95. percentilis
+        azt jelenti, hogy a mérések legalább 95%-a a határértéken belül van. A játék szabályából fakadó szándékos
+        animáció ideje külön mérendő, és nem rejtheti el az adatfeldolgozás késését.</p>
+      <h3>6.2. Válaszidőkövetelmények</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Azonosító</th>
+            <th>Művelet</th>
+            <th>Cél és mérés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>T-01</td>
+            <td>Nyitóoldal első betöltése</td>
+            <td>Legfeljebb 3 másodperc a 95. percentilisen, 100 üres gyorsítótáras betöltésből.</td>
+          </tr>
+          <tr>
+            <td>T-02</td>
+            <td>Kínálat, szabály, egyenleg</td>
+            <td>Legfeljebb 1 másodperc a 95. percentilisen, műveletenként 100 ismétlésből.</td>
+          </tr>
+          <tr>
+            <td>T-03</td>
+            <td>Indítás és elszámolás</td>
+            <td>Legfeljebb 2 másodperc a 95. percentilisen, 100 érvényes kör alapján.</td>
+          </tr>
+          <tr>
+            <td>T-04</td>
+            <td>Folyamatban jelzés</td>
+            <td>200 ms-on belül látható visszajelzés; a művelet ne tűnjön válasz nélkülinek.</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>6.3. Terhelés és kapacitás</h3>
+      <p><strong>T-05:</strong> központi kiszolgáló választása esetén 20 párhuzamos tesztjátékos tíz percen át,
+        játékosonként legalább 10 érvényes műveletet hajtson végre percenként. A T-02 és T-03 célértékei ezen a
+        terhelésen is teljesüljenek; belső feldolgozási hibával végződő kérések aránya legfeljebb 1% lehet. Hibás tét
+        szándékos elutasítása nem ilyen hiba.</p>
+      <p><strong>T-06:</strong> a fiók- és előzménymodul 1000 tesztfiókkal és összesen 10 000 lezárt körrel is legyen
+        vizsgálható. Az előzménylista egy lekérdezésre legfeljebb 50 rekordot jelenítsen meg; további oldalak külön
+        kérhetők le.</p>
+      <h3>6.4. Erőforrások és korlátok</h3>
+      <p>A tárhely és a szerver konkrét erőforráskerete a telepítési döntéstől függ. A mérésben rögzítendő a memória-,
+        processzor- és lemezhasználat. Kliensoldali demonstrátor esetén a többfelhasználós szerverterhelés nem
+        alkalmazható, de a válaszidőket és az adatmennyiség hatását ellenőrizni kell.</p>
+      <p>A célok nem igazolják a korlátlan skálázhatóságot. Sikertelen mérésnél a szűk keresztmetszet és a javítás
+        feljegyzendő; a követelmény csak külön dokumentált döntéssel módosítható.</p>
+    </section>
+
+    <section class="page">
+      <h2 id="tamogatottsag">7. Támogatottság</h2>
+
+      <h2 id="korlatozasok">8. Tervezési korlátozások</h2>
+    </section>
+
+
+    <section class="page">
+      <h2 id="mellekletek">13. Mellékletek</h2>
+      <h3>13.1. Fogalomtár</h3>
+
+      <h3>13.3. Követelmények és elfogadási próbák</h3>
+
+      <h3>13.4. Forrásjegyzék</h3>
+
+    </section>
+  </main>
+</body>
+
+</html>
