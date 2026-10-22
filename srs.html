@@ -32,6 +32,12 @@
             <td>1–2. és 13. fejezet: célok, környezet, fogalmak, melléklet.</td>
             <td>Varga Ákos</td>
           </tr>
+          <tr>
+            <td>2026. 10. 22.</td>
+            <td>1.1</td>
+            <td>3.1–3.2. fejezet: alapkövetelmények, fiók és játékválasztás.</td>
+            <td>Száraz Bálint Csaba</td>
+          </tr>
         </tbody>
       </table>
       <h2 id="tartalom">Tartalomjegyzék</h2>
@@ -96,12 +102,150 @@
     <section class="page">
       <h2 id="funkciok">3. A rendszer funkciói</h2>
       <h3 id="alapkov">3.1. Alapkövetelmények</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Azonosító</th>
+            <th>Elvárt működés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FK-01</td>
+            <td>A rendszer felsorolja a játékokat névvel, kategóriával és elérhetőségi állapottal; nem elérhető játék
+              nem indítható.</td>
+          </tr>
+          <tr>
+            <td>FK-02</td>
+            <td>A kiválasztott játék szabályai, tétkorlátai és kifizetési feltételei körindítás nélkül megtekinthetők.
+            </td>
+          </tr>
+          <tr>
+            <td>FK-03</td>
+            <td>A játékoshoz kezdőállapot és egyenleg rendelhető; meglévő állapot betöltése nem ad új kezdőzsetont.</td>
+          </tr>
+          <tr>
+            <td>FK-04</td>
+            <td>Indítás előtt ellenőrizendő a tét formátuma, pozitív értéke, megengedett lépcsője, korlátai és fedezete.
+            </td>
+          </tr>
+          <tr>
+            <td>FK-05</td>
+            <td>Elfogadott indítás egy azonosított kört és egyszeri tétlevonást hoz létre; egyszerre legfeljebb egy
+              aktív kör lehet.</td>
+          </tr>
+          <tr>
+            <td>FK-06</td>
+            <td>Csak a játék állapotában megengedett művelet hajtható végre; hibás vagy ismételt lépés nem okozhat új
+              változást.</td>
+          </tr>
+          <tr>
+            <td>FK-07</td>
+            <td>A kör kimenetele és teljes jóváírása a kör indításakor érvényes játékszabály szerint számítandó.</td>
+          </tr>
+          <tr>
+            <td>FK-08</td>
+            <td>Körönként egy végleges elszámolás készülhet; annak ismétlése nem eredményez újabb jóváírást.</td>
+          </tr>
+          <tr>
+            <td>FK-09</td>
+            <td>Az elkölthető egyenleg tételfogadás és elszámolás után frissül; nem lehet negatív.</td>
+          </tr>
+          <tr>
+            <td>FK-10</td>
+            <td>A lezáráskor megjelenik a játék, tét, kimenetel, teljes jóváírás és végső egyenleg.</td>
+          </tr>
+          <tr>
+            <td>FK-11</td>
+            <td>Lezárt kör után új kör indítható vagy másik játék választható; minden új tét új ellenőrzést igényel.
+            </td>
+          </tr>
+          <tr>
+            <td>FK-12</td>
+            <td>Megszakítás után a rendszer tisztázza az indítás vagy lezárás állapotát; nem von le vagy ír jóvá ismét.
+            </td>
+          </tr>
+          <tr>
+            <td>FK-13 *</td>
+            <td>Regisztrációkor egyedi felhasználónév, jelszó és jelszóismétlés ellenőrzendő; hibás adatokkal nincs
+              fióklétrehozás.</td>
+          </tr>
+          <tr>
+            <td>FK-14 *</td>
+            <td>Belépéskor a megfelelő fiók állapota töltődik be; kijelentkezéskor megszűnik az aktív belépés.</td>
+          </tr>
+          <tr>
+            <td>FK-15 *</td>
+            <td>A belépett felhasználó a saját felhasználónevét és egyenlegét tekintheti meg; jelszó nem jelenik meg.
+            </td>
+          </tr>
+          <tr>
+            <td>FK-16 *</td>
+            <td>A saját lezárt körök előzménye időrendben, a legújabbal kezdve kérdezhető le.</td>
+          </tr>
+          <tr>
+            <td>FK-17</td>
+            <td>A játék elhagyható; aktív körnél a rendszer jelzi, hogy a távozás nem törli a tétet vagy a kört.</td>
+          </tr>
+          <tr>
+            <td>FK-18</td>
+            <td>A hibás, sikeres és még nem tisztázott kimenetelű műveletekről külön visszajelzés szükséges.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small">* Feltételes modul. A következő pontok szöveges use case modellje a 2.2. pontban meghatározott
+        aktorokra épül.</p>
+        <h3 id="uc-modell">Use case modell és kapcsolatok</h3>
+      <p>Az alábbi ábra a közös játékfunkciókat és a szerepköröket mutatja:</p>
       
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="usecase.png" alt="Use Case Diagram" style="max-width: 100%; border: 1px solid #ccc; background: white; padding: 10px;">
+      </div>
     </section>
 
     <section class="page">
       <h2 id="ucfiok">3.2. Fiók és játékválasztás</h2>
-      
+      <h3>3.2.1. UC-01 – Kínálat és játékszabályok megtekintése</h3>
+      <p><strong>Cél, aktor:</strong> a Játékos vagy Látogató játékot keres és megismeri a szabályokat.
+        <strong>Előfeltétel:</strong> az alkalmazás elérhető. <strong>Utófeltétel:</strong> a kiválasztott játék
+        adatlapja vagy szabályleírása megjelenik; az egyenleg változatlan.</p>
+      <ol>
+        <li>A rendszer megjeleníti a játékok listáját és kategóriáit.</li>
+        <li>A felhasználó játékot választ, majd megnyitja annak szabályait.</li>
+        <li>A rendszer bemutatja a célt, műveleteket, téthatárokat és kifizetési szabályt.</li>
+        <li>A felhasználó visszatér az adatlaphoz vagy másik játékot választ.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> üres kínálatnál nincs indítási lehetőség; elérhetetlen játék állapota külön
+        jelzett. <strong>Kivétel:</strong> betöltési hiba vagy hiányzó szabály esetén új kör nem indítható.
+        <strong>Kapcsolat:</strong> FK-01, FK-02, FK-18; az UC-04 külön kezdeményezhető, nem kötelező része a
+        megtekintésnek.</p>
+      <h3>3.2.2. UC-02 – Regisztráció</h3>
+      <p><strong>Cél, aktor:</strong> a Látogató fiókot hoz létre. <strong>Előfeltétel:</strong> a fiókmodul
+        engedélyezett, nincs aktív belépés. <strong>Utófeltétel:</strong> siker esetén pontosan egy új fiók létezik;
+        hibánál nincs részleges fiók.</p>
+      <ol>
+        <li>A látogató megadja felhasználónevét, jelszavát és annak ismétlését.</li>
+        <li>A rendszer ellenőrzi a mezőket, az egyezést és a név egyediségét.</li>
+        <li>Létrehozza a fiókot és a szabály szerinti kezdőállapotot.</li>
+        <li>Visszajelzést ad, majd a bejelentkezéshez irányít.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> foglalt név, hibás mező vagy eltérő jelszóismétlés javítható; a látogató
+        elállhat. <strong>Kivétel:</strong> bizonytalan mentési eredmény után ismétlés előtt ellenőrizni kell,
+        létrejött-e már a fiók. <strong>Kapcsolat:</strong> FK-03, FK-13, FK-18; az UC-03 önálló művelet, nem
+        automatikus belépés.</p>
+      <h3>3.2.3. UC-03 – Bejelentkezés</h3>
+      <p><strong>Cél, aktor:</strong> a Látogató saját fiókját éri el. <strong>Előfeltétel:</strong> létező fiók és
+        engedélyezett fiókmodul. <strong>Utófeltétel:</strong> helyes adatokkal a saját állapot aktív, hibánál a
+        látogató nem lesz bejelentkezve.</p>
+      <ol>
+        <li>A felhasználó elküldi a belépési adatokat.</li>
+        <li>A rendszer ellenőrzi azokat és azonosítja a fiókot.</li>
+        <li>Betölti az egyenleget és az esetleges aktív kört.</li>
+        <li>Megjeleníti a fiók nézetét vagy a folytatandó kört.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> hibás adatoknál a rendszer elutasítja a belépést; már aktív belépésnél a
+        fióknézetre vezet. <strong>Kivétel:</strong> betöltési hibánál nincs új kezdőegyenleggel történő játékindítás.
+        <strong>Kapcsolat:</strong> FK-14, FK-15; előfeltételt teremt a fiókos UC-08 számára.</p>
     </section>
 
     <section class="page">
