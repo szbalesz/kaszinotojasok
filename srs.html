@@ -38,6 +38,12 @@
             <td>3.1–3.2. fejezet: alapkövetelmények, fiók és játékválasztás.</td>
             <td>Száraz Bálint Csaba</td>
           </tr>
+          <tr>
+            <td>2026. 10. 24.</td>
+            <td>1.2</td>
+            <td>3.3–3.4. fejezet: játékmenet, elszámolás, előzmények.</td>
+            <td>Csanálosi Bálint</td>
+          </tr>
         </tbody>
       </table>
       <h2 id="tartalom">Tartalomjegyzék</h2>
@@ -250,12 +256,84 @@
 
     <section class="page">
       <h2 id="ucjatek">3.3. Játékmenet és elszámolás</h2>
-     
+      <h3>3.3.1. UC-04 – Tét megadása és kör indítása</h3>
+      <p><strong>Cél, aktor:</strong> a Játékos új kört indít. <strong>Előfeltétel:</strong> elérhető játék, ismert
+        egyenleg, nincs aktív kör. <strong>Utófeltétel:</strong> siker esetén egy aktív kör és egyszer levont tét;
+        elutasításkor változatlan egyenleg.</p>
+      <ol>
+        <li>A rendszer megmutatja az egyenleget és a téthatárokat.</li>
+        <li>A játékos megadja, majd megerősíti a tétet.</li>
+        <li>A rendszer az aktuális állapot alapján ellenőrzi a fedezetet és a tétet.</li>
+        <li>Együtt érvényesíti a kör létrehozását és a levonást, majd megjeleníti a kezdőállapotot.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> érvénytelen tét javítható; aktív kör esetén ahhoz kell visszatérni.
+        <strong>Kivétel:</strong> elveszett válasznál az indítás azonosítója alapján állapotellenőrzés történik, új
+        levonás nélkül. <strong>Kapcsolat:</strong> FK-03–FK-05, FK-09, FK-12; sikeres befejezése az UC-05 előfeltétele.
+      </p>
+      <h3>3.3.2. UC-05 – Kör lejátszása</h3>
+      <p><strong>Cél, aktor:</strong> a Játékos végigjátssza az elfogadott kört. <strong>Előfeltétel:</strong> aktív
+        kör. <strong>Utófeltétel:</strong> siker esetén lezárt és elszámolt kör; megszakításnál megőrzött ismert
+        állapot.</p>
+      <ol>
+        <li>A rendszer megjeleníti az aktuális állapotot és a lehetséges műveleteket.</li>
+        <li>A játékos választ; a rendszer ellenőrzi és feldolgozza a műveletet.</li>
+        <li>A lépések a befejezési feltételig ismétlődnek; automatikus játékban nincs további választás.</li>
+        <li>A rendszer végrehajtja az UC-06 elszámolást és megmutatja az eredményt.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> tiltott művelet nem változtat állapotot. <strong>Kivétel:</strong>
+        kapcsolatvesztés nem jelent automatikus vereséget vagy új eredménysorsolást. <strong>Kapcsolat:</strong> FK-06,
+        FK-07, FK-10; az UC-05 kötelező részfolyamatként tartalmazza az UC-06-ot, azaz «include» kapcsolat áll fenn.</p>
+      <h3>3.3.3. UC-06 – Kör elszámolása</h3>
+      <p><strong>Cél:</strong> a Játékos körének egyszeri lezárása; az UC-05 által indított belső részfolyamat.
+        <strong>Előfeltétel:</strong> teljesült a befejezési feltétel, a kör még nincs elszámolva.
+        <strong>Utófeltétel:</strong> egy végleges eredmény és a hozzá tartozó egyszeri jóváírás.</p>
+      <ol>
+        <li>A rendszer kiszámítja a kimenetelt és a teljes jóváírást.</li>
+        <li>Rögzíti az eredményt, módosítja az egyenleget és lezárja a kört.</li>
+        <li>Visszaadja az eredményt a játékfelületnek és a feltételes előzménymodulnak.</li>
+      </ol>
+      <p><strong>Alternatíva:</strong> veszteségnél a jóváírás nulla; visszajáró tétnél a tét teljes összege.
+        <strong>Kivétel:</strong> bizonytalan mentésnél előbb állapotellenőrzés, utána a hiányzó lezárás következik.
+        <strong>Kapcsolat:</strong> FK-07–FK-10, FK-16; ismételt kérés ugyanazt az eredményt adja.</p>
     </section>
 
     <section class="page">
       <h2 id="ucadat">3.4. Adatok és kilépés</h2>
-      
+      <h3>3.4.1. UC-07 – Egyenleg és saját adatok megtekintése</h3>
+      <p><strong>Aktor, cél:</strong> a Játékos ellenőrzi az elkölthető zsetonokat. <strong>Előfeltétel:</strong> létező
+        játékállapot; fiókadatokhoz belépés. <strong>Utófeltétel:</strong> az adatok megjelennek, de nem változnak.</p>
+      <p><strong>Fő folyamat:</strong> 1. A rendszer azonosítja az aktuális játékost. 2. Lekéri az egyenleget és az
+        aktív tétet. 3. Megjeleníti ezeket, fiókos nézetben a felhasználónevet is. <strong>Alternatíva:</strong> nulla
+        egyenlegnél pozitív tét nem fogadható el. <strong>Kivétel:</strong> lekérdezési hibánál nem jelenhet meg
+        kitalált nulla. <strong>Kapcsolat:</strong> FK-09, FK-15, FK-18.</p>
+      <h3>3.4.2. UC-08 – Korábbi eredmények megtekintése</h3>
+      <p><strong>Aktor, cél:</strong> a Regisztrált játékos visszakeresi saját köreit. <strong>Előfeltétel:</strong>
+        aktív belépés és engedélyezett előzménymodul. <strong>Utófeltétel:</strong> megjelenik a saját lezárt körök
+        listája, új elszámolás nélkül.</p>
+      <p><strong>Fő folyamat:</strong> 1. A játékos megnyitja az előzményeket. 2. A rendszer lekéri a saját lezárt
+        köröket. 3. Megjeleníti a játékot, időpontot, tétet, eredményt, jóváírást és végső egyenleget.
+        <strong>Alternatíva:</strong> üres lista külön jelzett; a még aktív kör kimarad. <strong>Kivétel:</strong>
+        lekérdezési hiba nem azonos az üres előzménnyel. <strong>Kapcsolat:</strong> FK-16; adatait az UC-06 hozza
+        létre.</p>
+      <h3>3.4.3. UC-09 – Játék elhagyása</h3>
+      <p><strong>Aktor, cél:</strong> a Játékos visszatér a kínálatba. <strong>Előfeltétel:</strong> megnyitott
+        játékfelület. <strong>Utófeltétel:</strong> a kínálat látható; az elfogadott kör és tét megmarad.</p>
+      <p><strong>Fő folyamat:</strong> 1. A játékos távozást választ. 2. Aktív körnél a rendszer figyelmeztet a kör
+        fennmaradására. 3. Megerősítés után visszatér a kínálatba. <strong>Alternatíva:</strong> a távozás
+        visszavonható. <strong>Kivétel:</strong> böngészőbezáráskor a figyelmeztetés nem garantált; visszatéréskor
+        állapotellenőrzés kell. <strong>Kapcsolat:</strong> FK-11, FK-12, FK-17; aktív kör mellett UC-04 nem indíthat új
+        kört.</p>
+      <h3>3.4.4. UC-10 – Kijelentkezés</h3>
+      <p><strong>Aktor, cél:</strong> a Regisztrált játékos megszünteti belépését. <strong>Előfeltétel:</strong> aktív
+        fiókmunkamenet. <strong>Utófeltétel:</strong> a fiókhoz újbóli belépés kell; az egyenleg nem törlődik.</p>
+      <p><strong>Fő folyamat:</strong> 1. A játékos kijelentkezést kér. 2. Aktív körnél tájékoztatást kap annak
+        fennmaradásáról. 3. A rendszer érvényteleníti a munkamenetet és a nyitóoldalra vezet.
+        <strong>Alternatíva:</strong> már kijelentkezett állapotban a nyitóoldal jelenik meg. <strong>Kivétel:</strong>
+        kapcsolatvesztésnél a kijelentkezés sikere nem állítható ellenőrzés nélkül. <strong>Kapcsolat:</strong> FK-14,
+        FK-18.</p>
+      <h3>3.4.5. Közös elszámolási szabály</h3>
+      <p>Egyenleg a kör után = induló egyenleg − tét + teljes jóváírás. Például 1000 − 100 + 200 = 1100 zseton. A 200 a
+        visszakapott teljes összeg, a nettó nyereség 100. Ez szemléltető példa, nem rögzített kifizetési szabály.</p>
     </section>
 
     <section class="page">
