@@ -44,6 +44,12 @@
             <td>3.3–3.4. fejezet: játékmenet, elszámolás, előzmények.</td>
             <td>Csanálosi Bálint</td>
           </tr>
+          <tr>
+            <td>2026. 10. 25.</td>
+            <td>1.3</td>
+            <td>4. és 8. fejezet: használhatóság és tervezési korlátozások.</td>
+            <td>Illés Levente</td>
+          </tr>
         </tbody>
       </table>
       <h2 id="tartalom">Tartalomjegyzék</h2>
@@ -338,6 +344,39 @@
 
     <section class="page">
       <h2 id="hasznalhatosag">4. Használhatóság</h2>
+      <h3>4.1. Megtanulhatóság</h3>
+      <p><strong>H-01:</strong> öt, az alkalmazást korábban nem használó tesztelőből legalább négynek legfeljebb öt perc
+        alatt meg kell találnia a szabályokat, el kell indítania és be kell fejeznie egy egyszerű játékkört szóbeli
+        segítség nélkül. A teszt a nyitóoldal megjelenésétől indul; az eredmény személyenként idővel és sikerességgel
+        rögzítendő.</p>
+      <p>A használatot rövid szabályleírás, egyértelmű gombfeliratok és a tét megadásánál feltüntetett korlátok segítik.
+        Külön tanfolyam vagy személyes betanítás nem része a terméknek.</p>
+      <h3>4.2. Következetes navigáció</h3>
+      <p><strong>H-02:</strong> minden játék adatlapjáról közvetlenül elérhető legyen a játékszabály és a kínálatba
+        visszatérés. Azonos funkcióhoz azonos elnevezés tartozzon. A „Tét”, „Jóváírás” és „Egyenleg” kifejezések minden
+        képernyőn ugyanazt jelentsék.</p>
+      <p><strong>H-03:</strong> a kör elindítása előtt a játékos lássa a felhasználandó tétet és az aktuális egyenleget.
+        A körindítás ne történjen meg pusztán a tétmező fókuszba helyezésétől vagy a játék adatlapjának megnyitásától.
+      </p>
+      <h3>4.3. Olvashatóság és hozzáférés</h3>
+      <ul>
+        <li><strong>H-04:</strong> az alapműveletek billentyűzettel is végrehajthatók legyenek; a fókusz látható
+          maradjon, és ne alakuljon ki billentyűzetcsapda.</li>
+        <li><strong>H-05:</strong> a normál szöveg és háttere között legalább 4,5:1 kontrasztarány legyen. A nyertes
+          vagy vesztes eredményt szöveg is jelölje, ne csak szín.</li>
+        <li><strong>H-06:</strong> 360, 768 és 1366 képpont széles nézetben a tét és az alapgombok ne fedjék egymást. A
+          táblázatok szükség esetén saját görgethető területet kaphatnak.</li>
+        <li><strong>H-07:</strong> 200%-os nagyításnál a fő műveletek használhatók maradjanak, és a hibaüzenetek ne
+          vágódjanak le.</li>
+      </ul>
+      <h3>4.4. Hibák felismerése és javítása</h3>
+      <p><strong>H-08:</strong> érvénytelen tét esetén a hiba a tétmező mellett jelenjen meg, és nevezze meg a javítás
+        feltételét, például az elégtelen fedezetet. A helyesen kitöltött többi mező ne vesszen el. A függőben lévő kérés
+        kapjon külön állapotjelzést.</p>
+      <h3>4.5. Ellenőrzési módszer</h3>
+      <p>A használhatósági vizsgálat jegyzőkönyve tartalmazza a böngészőt, képernyőméretet, feladatot, szükséges időt és
+        az elakadások helyét. A H-01 mérését új résztvevőkkel kell végezni; a fejlesztők saját gyakorlata nem
+        helyettesíti azt. A H-04–H-07 követelmények manuális bejárással és kontrasztellenőrzéssel vizsgálandók.</p>
     </section>
 
     <section class="page">
@@ -407,6 +446,19 @@
       <h2 id="tamogatottsag">7. Támogatottság</h2>
 
       <h2 id="korlatozasok">8. Tervezési korlátozások</h2>
+      <h3>8.1. Technológiai keretek</h3>
+      <p>A felület HTML, CSS és JavaScript felhasználásával készül. A dokumentáció szabványos HTML legyen, Wordből
+        közvetlenül exportált HTML nélkül. A fejlesztés RUP-alapú tantárgyi szakaszaihoz igazodva az SRS a későbbi
+        modellek alapja.</p>
+      <h3>8.2. Állapotkezelési döntés</h3>
+      <p>Kizárólag kliensoldali változatban a helyi adatok a felhasználó által módosíthatók, és törlésükkor
+        elveszhetnek; az ilyen változat demonstrátor. Központi fiókok vállalásakor szerveroldali hitelesítés,
+        jogosultságvizsgálat és hiteles egyenlegkezelés szükséges. A két megoldás nem állítható azonos biztonságúnak.
+      </p>
+      <h3>8.3. Funkcionális korlátok</h3>
+      <p>Nincs valódi pénzkezelés vagy játékosok közötti zsetonátadás. Külső kód, kép vagy betűkészlet csak igazolt
+        felhasználási feltételekkel építhető be. Az aktív kör szabályverziója nem változhat egy későbbi
+        konfigurációfrissítéstől.</p>
     </section>
 
 
