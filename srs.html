@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaszinótojások – SRS 1.0</title>
+  <title>Kaszinótojások – SRS 1.4</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +13,7 @@
 
     <section class="page" id="tortenet">
       <h2>Történet</h2>
-      <p>Az 1.0 változat a teljes SRS munkaváltozata. Az alábbi öt sor a dokumentum részeinek kiosztását rögzíti. A
+      <p>Az 1.4 változat a teljes SRS munkaváltozata. Az alábbi öt sor a dokumentum részeinek kiosztását rögzíti. A
         szerző oszlop a kijelölt felelőst jelöli; a tényleges elkészítési és ellenőrzési időpontok a munkavégzés után
         vezetendők át.</p>
       <table>
@@ -49,6 +49,12 @@
             <td>1.3</td>
             <td>4. és 8. fejezet: használhatóság és tervezési korlátozások.</td>
             <td>Illés Levente</td>
+          </tr>
+          <tr>
+            <td>2026. 10. 25.</td>
+            <td>1.4</td>
+            <td>5–7. és 9–12. fejezet: megbízhatóság, teljesítmény, interfészek, szabványok.</td>
+            <td>Bari Szabolcs</td>
           </tr>
         </tbody>
       </table>
@@ -381,7 +387,39 @@
 
     <section class="page">
       <h2 id="megbizhatosag">5. Megbízhatóság</h2>
-
+      <h3>5.1. Egyenleg és eredmények helyessége</h3>
+      <p><strong>M-01:</strong> minden véglegesített körnél teljesüljön a 3.4.5. pont elszámolási képlete. A zsetonok
+        pontos, egész számú belső egységként kezelendők. Ha egy játékszabály tört zsetont igényel, annak lépcsőjét és
+        kerekítését a játék bevonása előtt külön rögzíteni kell.</p>
+      <p><strong>M-02:</strong> az indítás, valamint a lezárás összetartozó állapotváltozásai együtt érvényesüljenek.
+        Nem maradhat levont tét kör nélkül, és nem jelenhet meg végleges jóváírás lezárt kör nélkül. Ismételt kérés
+        ugyanazt a végleges eredményt adja vissza.</p>
+      <h3>5.2. Megszakítások és helyreállítás</h3>
+      <p><strong>M-03:</strong> oldalfrissítés, átmeneti hálózati hiba vagy ismételt kattintás ne hozzon létre további
+        tétlevonást. Legalább húsz ismételt indítási és húsz ismételt lezárási teszt egyikében sem keletkezhet kettős
+        elszámolás.</p>
+      <p><strong>M-04:</strong> az állapot visszaállítása a rögzített körből történjen. Bizonytalan kimenetel esetén a
+        rendszer ne generáljon új véletlen eredményt az előző helyett. A folytatást kérő játékost az ismert aktív körhöz
+        kell irányítani.</p>
+      <h3>5.3. Rendelkezésre állás és helyreállítási cél</h3>
+      <p><strong>M-05:</strong> a bemutató előtti kijelölt, négyórás tesztablakban a tervezett karbantartást kizárva
+        legalább 99% rendelkezésre állás a cél. Ez legfeljebb 2,4 perc összes nem tervezett kiesést jelent. Percenként
+        ellenőrizendő a nyitóoldal és egy állapotlekérés; a próba felbontása a jegyzőkönyvben szerepeljen.</p>
+      <p><strong>M-06:</strong> tartós fióktárolás esetén egy tesztkörnyezetben előidézett szolgáltatásleállásból
+        legfeljebb 30 perc alatt helyre kell állni. A mentésből visszaállított adatverziót és az esetleges kieső
+        időszakot jelezni kell; mentéskori állapot nem mutatható frissebbként.</p>
+      <h3>5.4. Adatvédelem és jogosultság</h3>
+      <ul>
+        <li><strong>M-07:</strong> fiókos működésnél más felhasználó egyenlege és előzménye azonosító átírásával sem
+          olvasható vagy módosítható.</li>
+        <li><strong>M-08:</strong> jelszó nem tárolható vagy naplózható olvasható alakban. A szerveroldali
+          hitelesítéshez jelszótárolásra alkalmas, sózott lenyomatképzés szükséges.</li>
+        <li><strong>M-09:</strong> központi fiók esetén a tét és eredmény végső ellenőrzése nem bízható kizárólag a
+          böngészőre. A kliens által küldött jóváírás nem tekinthető hiteles eredménynek.</li>
+      </ul>
+      <p>A projekt nem vállal folyamatos üzemi szolgáltatási szintet. MTBF érték a rövid fejlesztési időszakból nem
+        becsülhető megalapozottan; a hibák és a helyreállítási idők mérendők, nem feltételezett értékként jelentendők.
+      </p>
     </section>
 
     <section class="page">
@@ -444,7 +482,24 @@
 
     <section class="page">
       <h2 id="tamogatottsag">7. Támogatottság</h2>
-
+      <h3>7.1. Kódszerkezet és változáskövetés</h3>
+      <p>A forráskód GitHub-tárolóban legyen verziózva. A megjelenítés, játéklogika és állapotkezelés külön modulokba
+        kerüljön. Az elnevezések legyenek következetesek; a megosztott számítások ne szerepeljenek eltérő másolatban
+        több játékban.</p>
+      <p>Minden kiadható verzióhoz tartozzon verziójel, változásleírás és telepítési útmutató. A hibajegy tartalmazza a
+        reprodukálás lépéseit, az elvárt és tényleges működést, valamint az érintett böngészőt. A csapattagok
+        ellenőrizzék egymás módosításait összevonás előtt.</p>
+      <h3>7.2. Tesztelhetőség és hibakeresés</h3>
+      <p>A tétellenőrzés és elszámolás automatikus tesztekkel ellenőrizendő. Véletlent használó játékhoz
+        tesztkörnyezetben vezérelhető eredményforrás szükséges, hogy a kifizetési esetek ismételhetők legyenek; ez a
+        felhasználói működésben nem lehet választható csalási lehetőség.</p>
+      <p>A hibákhoz időpont, művelettípus, kör- vagy kérésazonosító és hibakód naplózható. Jelszó, munkamenettitok vagy
+        szükségtelen személyes adat nem kerülhet naplóba. A diagnosztikai részleteket a fejlesztő kapja meg, a játékos
+        érthető hibaüzenetet lásson.</p>
+      <h3>7.3. Telepítés és mentés</h3>
+      <p>A README írja le az indítási parancsokat, szükséges verziókat, konfigurációt és a tesztek futtatását. Tartós
+        adatbázis esetén dokumentálni kell a mentést és a visszaállítást; bemutató előtt legalább egy sikeres
+        visszaállítási próbát végre kell hajtani.</p>
       <h2 id="korlatozasok">8. Tervezési korlátozások</h2>
       <h3>8.1. Technológiai keretek</h3>
       <p>A felület HTML, CSS és JavaScript felhasználásával készül. A dokumentáció szabványos HTML legyen, Wordből
@@ -461,15 +516,259 @@
         konfigurációfrissítéstől.</p>
     </section>
 
+    <section class="page">
+      <h2 id="help">9. On-line dokumentáció és Help rendszer</h2>
+      <h3>9.1. Felhasználói súgó</h3>
+      <p>A súgó a nyitóoldalról és minden játék adatlapjáról legyen elérhető. Tartalmazza a játékok kiválasztását, a
+        virtuális zsetonok jelentését, a tét megadását, az eredmény olvasását és a kilépést. A feltételes fiókmodulhoz
+        külön regisztrációs és belépési leírás tartozzon.</p>
+      <p>Minden játék saját súgója ismertesse a célt, a műveleteket, a befejezési feltételeket, a tétkorlátokat és a
+        teljes jóváírás számítását. Legalább egy vesztes és egy nyertes elszámolási példa szükséges. A súgó megnyitása
+        nem fogadhat el tétet és nem léptetheti a kört.</p>
+      <h3>9.2. Kontextusfüggő segítség</h3>
+      <p>A tétmező mellett a megengedett tartomány és a rendelkezésre álló fedezet szerepeljen. A hibaüzenet mondja el,
+        mi történt, módosult-e az állapot, és mi a következő megengedett művelet. Függőben lévő kérésnél az állapot
+        tisztázására kell irányítani, nem ismételt tétindításra.</p>
+      <h3>9.3. Gyakori kérdések és karbantartás</h3>
+      <ul>
+        <li>Miért nem váltható pénzre a zseton?</li>
+        <li>Miért utasította el a rendszer a tétemet?</li>
+        <li>Mi történik oldalfrissítés vagy játékból kilépés után?</li>
+        <li>Mit jelent a jóváírás és a nettó eredmény különbsége?</li>
+        <li>Meddig maradnak meg az adataim, és mit tehetek nulla egyenlegnél?</li>
+      </ul>
+      <p>A válaszok a választott működési szabályokat tükrözzék. Funkcióváltozáskor a súgót ugyanabban a verzióban kell
+        frissíteni. Külső oktatóvideó vagy fizetős támogatási szolgáltatás nem szükséges.</p>
+      <h2 id="komponensek">10. Felhasznált kész komponensek</h2>
+      <h3>10.1. Jelenlegi komponensállapot</h3>
+      <p>A vízió nem nevez meg véglegesen kiválasztott külső futásidejű könyvtárat, keretrendszert vagy adatbázist. A
+        böngésző szabványos szolgáltatásai használhatók; konkrét harmadik féltől származó komponens nem tekinthető már
+        beépítettnek. A GitHub fejlesztési szolgáltatás, nem az alkalmazás beágyazott könyvtára.</p>
+      <h3>10.2. Kötelező komponensnyilvántartás</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rögzítendő adat</th>
+            <th>Tartalom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Azonosítás</td>
+            <td>Név, pontos verzió, hivatalos forrás vagy letöltési cím.</td>
+          </tr>
+          <tr>
+            <td>Feladat</td>
+            <td>Melyik modul használja, és miért szükséges.</td>
+          </tr>
+          <tr>
+            <td>Felhasználási feltételek</td>
+            <td>Licenc, megőrzendő megjelölések, terjesztési korlátozások.</td>
+          </tr>
+          <tr>
+            <td>Beszerzés és függőség</td>
+            <td>Költség, jóváhagyás, frissítés módja, kiesés esetén követett eljárás.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>A jegyzék a saját készítésű és külső képi elemeket is különítse el. Ismeretlen licencű tartalom nem
+        használható. Fizetős komponens bevezetése csak előzetes csapatdöntéssel történhet.</p>
+    </section>
+
+    <section class="page">
+      <h2 id="interfeszek">11. Interfészek</h2>
+      <h3>11.1. Felhasználói interfészek</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nézet</th>
+            <th>Bemenet és megjelenített eredmény</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nyitóoldal és kínálat</td>
+            <td>Játékválasztás; név, kategória, elérhetőség, súgó és feltételes belépés.</td>
+          </tr>
+          <tr>
+            <td>Játékadatlap</td>
+            <td>Szabálymegnyitás, tétbevitel, indítás; téthatárok és aktuális egyenleg.</td>
+          </tr>
+          <tr>
+            <td>Aktív játék</td>
+            <td>A szabály szerint engedélyezett lépések; körállapot, tét és műveleti visszajelzés.</td>
+          </tr>
+          <tr>
+            <td>Eredmény</td>
+            <td>Kimenetel, tét, teljes jóváírás, új egyenleg; új kör vagy visszatérés.</td>
+          </tr>
+          <tr>
+            <td>Fiók és előzmény *</td>
+            <td>Belépési adatok, kijelentkezés, lapozás; saját név, egyenleg és lezárt körök.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>A végleges képernyőtervek ezekre az elemekre épülnek. A gombfeliratok és az állapotjelzések legyenek
+        egységesek. A dokumentum sötét CSS-megjelenése önmagában nem jelent kész alkalmazásfelületet.</p>
+      <h3>11.2. Hardware interfészek</h3>
+      <p>Speciális hardver nem szükséges. A rendszer szabványos billentyűzetet, egeret vagy érintőképernyőt használ a
+        böngészőn keresztül. Bankkártya-olvasó, személyazonosító eszköz és más közvetlen perifériaintegráció nem része a
+        tervnek.</p>
+      <h3>11.3. Software interfészek</h3>
+      <p>A közös logikai kapcsolódások az alábbiak. Ezek műveleti szerződések, nem végleges API-végpontok; helyi modulok
+        vagy szerveroldali szolgáltatások is megvalósíthatják őket.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Művelet</th>
+            <th>Bemenet</th>
+            <th>Kimenet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Játékok lekérése</td>
+            <td>Nincs kötelező bemenet</td>
+            <td>Játékazonosító, név, állapot, szabályverzió</td>
+          </tr>
+          <tr>
+            <td>Kör indítása</td>
+            <td>Játékazonosító, tét, kérésazonosító</td>
+            <td>Körazonosító, kezdőállapot, egyenleg vagy hibakód</td>
+          </tr>
+          <tr>
+            <td>Lépés feldolgozása</td>
+            <td>Körazonosító, művelet, kérésazonosító</td>
+            <td>Következő állapot vagy elutasítás</td>
+          </tr>
+          <tr>
+            <td>Állapot lekérése</td>
+            <td>Kör- vagy kérésazonosító</td>
+            <td>Aktív, lezárt vagy nem elfogadott állapot</td>
+          </tr>
+          <tr>
+            <td>Előzmény lekérése *</td>
+            <td>Hitelesített munkamenet, oldalszám</td>
+            <td>Saját lezárt körök, legfeljebb 50 sor</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>11.4. Kommunikációs interfészek</h3>
+      <p>Webes kiszolgálásnál HTTPS kapcsolat szükséges. Szerveroldali működésben az adatcsere javasolt formátuma UTF-8
+        kódolású JSON. A kliens ne küldhessen hitelesnek tekintett egyenleget vagy nyereményt. Hibaválasz esetén géppel
+        feldolgozható kód és érthető felhasználói üzenet is szükséges.</p>
+    </section>
+
+    <section class="page">
+      <h2 id="szabvanyok">12. Alkalmazott szabványok</h2>
+      <h3>12.1. Kötelezően alkalmazandó előírások</h3>
+      <p>A tantárgyi dokumentáció HTML formátumban készül, egyszerű formázott szöveggel, táblázatokkal és szükség esetén
+        képekkel. Kötelező a történettáblázat, az ugróhivatkozásos tartalomjegyzék és a decimális fejezetszámozás. A
+        fájlnév ékezet és szóköz nélküli, verzióazonosítót tartalmazó név legyen, például
+        <code>Kaszinotojasok_SRS_v1_0.html</code>.</p>
+      <p>A dokumentumtörténet a valós változásokat rögzítse; a tervezett munkamegosztás ne szerepeljen utólag igazolt
+        teljesítésként.</p>
+      <p>Az alkalmazás nem vezethet be valódi pénzes szolgáltatást a jelen követelményekre hivatkozva. Személyes adatok
+        és külső szerzői művek bevonása esetén a vonatkozó adatkezelési és felhasználási feltételeket a tényleges
+        megvalósítás alapján külön ellenőrizni kell; ez a dokumentum nem állapít meg jogi megfelelőséget.</p>
+      <h3>12.2. Választás alapján alkalmazott szabványok</h3>
+      <p>A dokumentum és a webes felület HTML5 szerkezetet, CSS-megjelenítést és UTF-8 kódolást használjon. A
+        dokumentumban a címhierarchia és a hivatkozások géppel is bejárhatók legyenek. A hibás elembeágyazásokat és a
+        nem létező hivatkozási célokat kiadás előtt ellenőrizni kell.</p>
+      <p>A hozzáférhetőség tervezési referenciája a WCAG 2.2. A jelen SRS a 4. fejezetben kiválasztott, mérhető
+        követelményeket vállalja; ezek teljesítése nem jelent automatikusan teljes WCAG-megfelelőségi nyilatkozatot.</p>
+      <p>A use case-ek aktor, előfeltétel, utófeltétel, fő folyamat, alternatív folyamat, kivétel és kapcsolatok
+        szerinti leírást követnek. Későbbi UML-ábrákon a szerepek és az azonosítók ezekkel legyenek összhangban. Belső
+        adatbázis vagy játékmotor ne jelenjen meg külső aktorként.</p>
+      <h3>12.3. Dokumentációs és verziózási rend</h3>
+      <ul>
+        <li>A követelményazonosítók későbbi verzióban is maradjanak visszakereshetők.</li>
+        <li>Tartalmi változtatáskor frissíteni kell az érintett use case-t és tesztet.</li>
+        <li>A kiadott dokumentum verziója és a vizsgált programverzió szerepeljen a tesztjegyzőkönyvben.</li>
+        <li>A HTML ne igényeljen JavaScriptet a szöveg vagy tartalomjegyzék megjelenítéséhez.</li>
+        <li>A munkanapló külön dokumentum; a követelményleírás nem helyettesíti az egyéni időráfordítások
+          nyilvántartását.</li>
+      </ul>
+      <h3>12.4. Megfelelőség ellenőrzése</h3>
+      <p>A csapat a beadás előtt ellenőrzi a teljes fejezetsort, a belső hivatkozásokat, a fájlnevet és a nyomtatási
+        nézetet. A hivatkozott külső szabványok nem írják felül a tantárgy saját dokumentumformátumát. Eltérés esetén az
+        oktatói előírás és a tényleges beadási követelmény az irányadó.</p>
+    </section>
 
     <section class="page">
       <h2 id="mellekletek">13. Mellékletek</h2>
       <h3>13.1. Fogalomtár</h3>
-
+      <p><strong>SRS:</strong> szoftverkövetelmény specifikáció. <strong>Aktor:</strong> külső felhasználói szerep.
+        <strong>Játékkör:</strong> egy elfogadott tétből induló, egyszer elszámolt játék. <strong>Virtuális
+          zseton:</strong> pénzre nem váltható belső játékegység. <strong>Teljes jóváírás:</strong> a kör végén
+        visszakapott teljes összeg. <strong>Nettó eredmény:</strong> jóváírás mínusz tét. <strong>Idempotens
+          művelet:</strong> ismétlése nem hoz létre további állapotváltozást.</p>
+      <h3>13.2. Nyitott döntések</h3>
+      <ul>
+        <li><strong>NY-01:</strong> a konkrét játékok, szabályaik, tétlépcsőik és kifizetési tábláik.</li>
+        <li><strong>NY-02:</strong> a kezdőzseton mennyisége, vendégállapot élettartama, nulla egyenleg utáni lehetőség.
+        </li>
+        <li><strong>NY-03:</strong> fiók- és előzménymodul vállalása, mezőszabályok, megőrzési idő; szerver és
+          adattároló kiválasztása.</li>
+        <li><strong>NY-04:</strong> aktív kör lejárata, feladása és visszatérése játékonként. Alapjavaslat: távozáskor
+          fennmarad.</li>
+        <li><strong>NY-05:</strong> alkalmazásnév, címlap hiányzó adatai, mérési célok csapat általi véglegesítése.</li>
+      </ul>
       <h3>13.3. Követelmények és elfogadási próbák</h3>
-
+      <table>
+        <thead>
+          <tr>
+            <th>Terület</th>
+            <th>Kapcsolat</th>
+            <th>Minimális ellenőrzés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kínálat</td>
+            <td>FK-01–02 / UC-01</td>
+            <td>Elérhető és nem elérhető játék; szabálymegnyitás.</td>
+          </tr>
+          <tr>
+            <td>Fiók *</td>
+            <td>FK-13–15 / UC-02, 03, 07, 10</td>
+            <td>Foglalt név, hibás belépés, saját adatok, kijelentkezés.</td>
+          </tr>
+          <tr>
+            <td>Játékkör</td>
+            <td>FK-03–08 / UC-04–06</td>
+            <td>Hibás tét, tiltott lépés, vesztes és nyertes elszámolás.</td>
+          </tr>
+          <tr>
+            <td>Állapot</td>
+            <td>FK-09–12, 17–18 / UC-07, 09</td>
+            <td>Frissítés, ismételt kérés, távozás, ismeretlen kimenetel.</td>
+          </tr>
+          <tr>
+            <td>Előzmény *</td>
+            <td>FK-16 / UC-08</td>
+            <td>Üres lista, saját körök, időrend és lapozás.</td>
+          </tr>
+          <tr>
+            <td>Minőség</td>
+            <td>H-01–08, M-01–09, T-01–06</td>
+            <td>Használói próba, jogosultság, helyreállítás, idő- és terhelésmérés.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Elfogadáskor minden vállalt követelményhez sikeres teszt szükséges. A nyitott döntések által érintett funkciók
+        végleges elfogadása csak a döntések lezárása után történhet. A feltételes modul kihagyását külön rögzíteni kell.
+      </p>
       <h3>13.4. Forrásjegyzék</h3>
-
+      <ol class="small">
+        <li>Kaszinótojások: Kaszinó applikáció tervezése – a csapat Vízió dokumentuma.</li>
+        <li><a href="https://users.iit.uni-miskolc.hu/~mileff/szt/srs.html">Miskolci Egyetem: SRS dokumentumminta</a>.
+        </li>
+        <li><a href="https://users.iit.uni-miskolc.hu/~mileff/szt/dokformat.html">Dokumentumokra vonatkozó formai
+            előírások</a>.</li>
+        <li><a href="https://users.iit.uni-miskolc.hu/~mileff/szt/cimlap.html">Tantárgyi címlapminta</a>.</li>
+        <li><a href="https://www.w3.org/TR/WCAG22/">W3C: Web Content Accessibility Guidelines 2.2</a>.</li>
+      </ol>
     </section>
   </main>
 </body>
