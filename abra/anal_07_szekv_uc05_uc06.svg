@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1357" height="822" viewBox="0 0 1357 822" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="18" y="90" width="1321.0" height="194" fill="none" stroke="#5b6b8c" stroke-width="1"/>
+<path d="M18,90 h38.0 v12 l-7,7 h-31.0 z" fill="#e6ebf5" stroke="#5b6b8c"/>
+<text x="23" y="104" font-size="11" font-weight="bold">loop</text>
+<text x="64.0" y="104" font-size="11" font-style="italic">[amíg a kör nem fejeződött be]</text>
+<rect x="18" y="330" width="1321.0" height="376" fill="none" stroke="#5b6b8c" stroke-width="1"/>
+<path d="M18,330 h28.0 v12 l-7,7 h-21.0 z" fill="#e6ebf5" stroke="#5b6b8c"/>
+<text x="23" y="344" font-size="11" font-weight="bold">alt</text>
+<text x="54.0" y="344" font-size="11" font-style="italic">[a kör még nincs elszámolva]</text>
+<line x1="18" y1="640" x2="1339.0" y2="640" stroke="#5b6b8c" stroke-dasharray="5,4"/>
+<text x="26" y="655" font-size="11" font-style="italic">[már elszámolt kör (ismételt kérés)]</text>
+<circle cx="105.0" cy="27" r="7" fill="white" stroke="#2f3b52" stroke-width="1.3"/>
+<path d="M105.0,34 v14 M94.0,39 h22 M105.0,48 l-9,11 M105.0,48 l9,11" fill="none" stroke="#2f3b52" stroke-width="1.3"/>
+<text x="105.0" y="74" font-size="12" text-anchor="middle" font-weight="bold">Játékos</text>
+<line x1="105.0" y1="80" x2="105.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="336.0" y="28" width="90" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="381.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Felület</text>
+<line x1="381.0" y1="58" x2="381.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="517.0" y="28" width="90" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="562.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Játékkör</text>
+<line x1="562.0" y1="58" x2="562.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="746.0" y="28" width="104.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="798.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Játékszabály</text>
+<line x1="798.0" y1="58" x2="798.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="894.5" y="483" width="107.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="948.0" y="502" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Köreredmény</text>
+<line x1="948.0" y1="513" x2="948.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="1038.5" y="28" width="119.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="1098.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Zsetonegyenleg</text>
+<line x1="1098.0" y1="58" x2="1098.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="1199.0" y="28" width="98.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="1248.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:Játékállapot</text>
+<line x1="1248.0" y1="58" x2="1248.0" y2="808" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="105.0" y1="122" x2="381.0" y2="122" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M371.0,117 L381.0,122 L371.0,127 z" fill="#2f3b52"/>
+<text x="243.0" y="116" font-size="12" text-anchor="middle">művelet kiválasztása</text>
+<line x1="381.0" y1="156" x2="562.0" y2="156" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M552.0,151 L562.0,156 L552.0,161 z" fill="#2f3b52"/>
+<text x="471.5" y="150" font-size="12" text-anchor="middle">lepesVegrehajt(muvelet)</text>
+<line x1="562.0" y1="190" x2="798.0" y2="190" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M788.0,185 L798.0,190 L788.0,195 z" fill="#2f3b52"/>
+<text x="680.0" y="184" font-size="12" text-anchor="middle">lepesEngedelyezett(allapot, muvelet)</text>
+<line x1="798.0" y1="224" x2="562.0" y2="224" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M571.0,219 L562.0,224 L571.0,229" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="680.0" y="218" font-size="12" text-anchor="middle">igen / nem</text>
+<line x1="562.0" y1="258" x2="381.0" y2="258" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M390.0,253 L381.0,258 L390.0,263" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="471.5" y="252" font-size="12" text-anchor="middle">új körállapot vagy elutasítás</text>
+<line x1="381.0" y1="302" x2="562.0" y2="302" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M552.0,297 L562.0,302 L552.0,307 z" fill="#2f3b52"/>
+<text x="471.5" y="296" font-size="12" text-anchor="middle">lezar()</text>
+<line x1="562.0" y1="362" x2="798.0" y2="362" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M788.0,357 L798.0,362 L788.0,367 z" fill="#2f3b52"/>
+<text x="680.0" y="356" font-size="12" text-anchor="middle">kimenetelMeghataroz(korAdatok)</text>
+<line x1="798.0" y1="396" x2="562.0" y2="396" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M571.0,391 L562.0,396 L571.0,401" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="680.0" y="390" font-size="12" text-anchor="middle">kimenetel</text>
+<line x1="562.0" y1="430" x2="798.0" y2="430" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M788.0,425 L798.0,430 L788.0,435 z" fill="#2f3b52"/>
+<text x="680.0" y="424" font-size="12" text-anchor="middle">jovairasSzamit(kimenetel, tet)</text>
+<line x1="798.0" y1="464" x2="562.0" y2="464" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M571.0,459 L562.0,464 L571.0,469" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="680.0" y="458" font-size="12" text-anchor="middle">teljes jóváírás</text>
+<line x1="562.0" y1="498" x2="894.5" y2="498" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M884.5,493 L894.5,498 L884.5,503 z" fill="#2f3b52"/>
+<text x="728.25" y="492" font-size="12" text-anchor="middle">«create» (kimenetel, jóváírás)</text>
+<line x1="562.0" y1="532" x2="1098.0" y2="532" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1088.0,527 L1098.0,532 L1088.0,537 z" fill="#2f3b52"/>
+<text x="830.0" y="526" font-size="12" text-anchor="middle">jovair(osszeg, korAz)</text>
+<line x1="562.0" y1="566" x2="1248.0" y2="566" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1238.0,561 L1248.0,566 L1238.0,571 z" fill="#2f3b52"/>
+<text x="905.0" y="560" font-size="12" text-anchor="middle">aktivKorTorol()</text>
+<text x="572.0" y="594" font-size="12">allapot := LEZÁRT</text>
+<path d="M562.0,600 h34 v16 h-34" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M570.0,611 L562.0,616 L570.0,621" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="572.0" y="664" font-size="12">meglévő eredmény visszaadása</text>
+<path d="M562.0,670 h34 v16 h-34" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M570.0,681 L562.0,686 L570.0,691" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<line x1="562.0" y1="724" x2="381.0" y2="724" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M390.0,719 L381.0,724 L390.0,729" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="471.5" y="718" font-size="12" text-anchor="middle">Köreredmény</text>
+<line x1="381.0" y1="758" x2="105.0" y2="758" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M114.0,753 L105.0,758 L114.0,763" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="243.0" y="752" font-size="12" text-anchor="middle">játék, tét, kimenetel, jóváírás, végső egyenleg</text>
+</svg>

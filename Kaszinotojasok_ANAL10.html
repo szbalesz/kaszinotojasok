@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszinótojások – Analízis modell 1.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="page cover" id="cimlap">
+      <p class="meta">Csoport neve: Kaszinótojások</p>
+      <p class="meta">Feladat címe: Kaszinó applikáció tervezése</p>
+      <h1>ANALÍZIS MODELL</h1>
+      <p class="label">Gyakorlatvezető:</p>
+      <p class="teacher">Sátán Ádám</p>
+      <p class="label">Csoport tagok:</p>
+      <table>
+        <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
+      </table>
+      <p class="date">Verzió: 1.0<br>2026. 11. 14.</p>
+    </section>
+    <section class="page">
+      <h2 id="tortenet">Történet</h2>
+      <table>
+        <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
+        <tbody><tr><td>2026. 11. 14.</td><td>1.0</td><td>Kezdeti osztálydiagram és alrendszerek; a Játékkínálat és a Játékmenet alrendszer modellje (1–4. fejezet).</td><td>Bari Szabolcs</td></tr></tbody>
+      </table>
+      <h2 id="tartalom">Tartalomjegyzék</h2>
+      <ul class="toc">
+        <li><a href="#s1">1. Bevezetés</a></li>
+        <li style="margin-left:18px"><a href="#s1-1">1.1. A dokumentum célja</a></li>
+        <li style="margin-left:18px"><a href="#s1-2">1.2. A rendszer rövid áttekintése</a></li>
+        <li style="margin-left:18px"><a href="#s1-3">1.3. Jelölések</a></li>
+        <li><a href="#s2">2. Kezdeti osztálydiagram</a></li>
+        <li style="margin-left:18px"><a href="#s2-1">2.1. Osztálydiagram</a></li>
+        <li style="margin-left:18px"><a href="#s2-2">2.2. Osztályok felsorolása</a></li>
+        <li style="margin-left:18px"><a href="#s2-3">2.3. Alrendszerek</a></li>
+        <li><a href="#s3">3. A Játékkínálat alrendszer modellje</a></li>
+        <li style="margin-left:18px"><a href="#s3-1">3.1. Statikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s3-2">3.2. Dinamikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s3-3">3.3. Funkcionális modell</a></li>
+        <li style="margin-left:18px"><a href="#s3-4">3.4. Operációk azonosítása</a></li>
+        <li style="margin-left:18px"><a href="#s3-5">3.5. Az analízis modell osztálydiagramja</a></li>
+        <li style="margin-left:18px"><a href="#s3-6">3.6. Az analízis modell osztályainak listája</a></li>
+        <li><a href="#s4">4. A Játékmenet alrendszer modellje</a></li>
+        <li style="margin-left:18px"><a href="#s4-1">4.1. Statikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s4-2">4.2. Dinamikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s4-3">4.3. Funkcionális modell</a></li>
+        <li style="margin-left:18px"><a href="#s4-4">4.4. Operációk azonosítása</a></li>
+        <li style="margin-left:18px"><a href="#s4-5">4.5. Az analízis modell osztálydiagramja</a></li>
+        <li style="margin-left:18px"><a href="#s4-6">4.6. Az analízis modell osztályainak listája</a></li>
+      </ul>
+    </section>
+    <section class="page">
+      <h2 id="s1">1. Bevezetés</h2>
+      <h3 id="s1-1">1.1. A dokumentum célja</h3>
+      <p>Ez a dokumentum a Kaszinótojások csapat webes kaszinóalkalmazásának objektumorientált analízis modelljét tartalmazza. A modell a Vízió dokumentumra és az SRS 1.4-es változatára épül: a használati esetekből és a szöveges funkcionális követelményekből (FK-01–FK-18) kiindulva meghatározza a rendszer osztályait, azok kapcsolatait, valamint a statikus, dinamikus és funkcionális modelljét.</p>
+      <p>Az analízis célja annak leírása, hogy <em>mit</em> kell a rendszernek tudnia, és milyen objektumok együttműködésével valósul meg a működés. A konkrét technikai megoldásokat (adatbázis, felülettervek, szerveroldali interfész) a Rendszerterv dokumentum tartalmazza.</p>
+      <h3 id="s1-2">1.2. A rendszer rövid áttekintése</h3>
+      <p>Az alkalmazás többféle kaszinójellegű játék kipróbálását teszi lehetővé kizárólag virtuális zsetonokkal. Valódi pénz kezelése, befizetés és pénzkifizetés nem része a rendszernek. A játékos megtekinti a kínálatot és a szabályokat, tétet ad meg, lejátssza a kört, majd megtekinti az eredményt és az egyenlegét. Az SRS szerint a fiókkezelés és az előzmények tárolása feltételes modul; az ehhez tartozó osztályok «opcionális» sztereotípiát kapnak.</p>
+      <h3 id="s1-3">1.3. Jelölések</h3>
+      <p>Az ábrák UML 2 jelölést használnak. Az osztálynevek ékezetes magyar szavak, az attribútumok és operációk ékezet nélküli tervezési nevek (például <em>korAzonosito</em>). A típusok elemzési szintűek (szöveg, egész, logikai, időpont, felsorolás); a pontos adattípusokat a Rendszerterv rögzíti. A más alrendszerhez tartozó osztályok a részletes osztálydiagramokon szürke, csak névvel jelölt dobozként jelennek meg.</p>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s2">2. Kezdeti osztálydiagram</h2>
+      <h3 id="s2-1">2.1. Osztálydiagram</h3>
+      <p>A kezdeti osztályok az SRS használati eseteinek főneveiből és a funkcionális követelményekből származnak. Ezen a szinten csak az osztályok közötti asszociációk és multiplicitások szerepelnek; az attribútumokat és az operációkat a további fejezetek határozzák meg.</p>
+<p style="text-align:center"><a href="abra/anal_01_kezdeti_osztalydiagram.svg"><img src="abra/anal_01_kezdeti_osztalydiagram.svg" alt="Kezdeti osztálydiagram" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>1. ábra – Kezdeti osztálydiagram</em></p>
+
+      <h3 id="s2-2">2.2. Osztályok felsorolása</h3>
+      <p><strong>Játék</strong><br>A kínálatban megjelenő játékot írja le (név, kategória, elérhetőség), és összekapcsolja a hozzá tartozó szabályverziókkal.</p>
+      <p><strong>Játékszabály</strong><br>Egy játék meghatározott verziójának tétkorlátait, megengedett lépéseit és kifizetési szabályát tartalmazza. Egy elindított kör mindig az indításkor érvényes verziót használja.</p>
+      <p><strong>Játékos</strong><br>Az alkalmazást használó személyt képviseli, akihez egyenleg és játékállapot tartozik. Fiók nélkül, vendégként is létezhet.</p>
+      <p><strong>Játékkör</strong><br>Egy elfogadott tétből induló játékfolyamat. A lezárás és az elszámolás körönként pontosan egyszer történhet meg.</p>
+      <p><strong>Köreredmény</strong><br>A lezárt kör végleges kimenetelét, teljes jóváírását és a kör utáni egyenleget rögzíti.</p>
+      <p><strong>Zsetonegyenleg</strong><br>A játékos elkölthető virtuális zsetonjait tartja nyilván; nem enged negatív egyenleget, sem ugyanannak a levonásnak vagy jóváírásnak az ismétlését.</p>
+      <p><strong>Játékállapot</strong><br>A játékos aktív körét és a folyamatban lévő kéréseket tartja nyilván; megszakítás után ebből állítható vissza a játék.</p>
+      <p><strong>Felhasználói fiók</strong> (opcionális)<br>A regisztrált játékos azonosítását, a bejelentkezést és a fiókhoz tartozó állapot betöltését biztosítja.</p>
+      <p><strong>Előzmény</strong> (opcionális)<br>A regisztrált játékos saját lezárt köreit teszi időrendben visszakereshetővé.</p>
+      <h3 id="s2-3">2.3. Alrendszerek</h3>
+      <p>A rendszer négy funkcionális alrendszerből áll. Az ábra az alrendszerek közötti függőségeket és az átadott információkat mutatja: a Játékmenet a Játékkínálattól kapja a szabályokat, a Zseton- és állapotkezeléstől a fedezetet és az aktív kör adatait; a feltételes Fiók és előzmények alrendszer a meglévő állapotot tölti be, és a lezárt körökre hivatkozik.</p>
+<p style="text-align:center"><a href="abra/anal_02_alrendszerek.svg"><img src="abra/anal_02_alrendszerek.svg" alt="Az alrendszerek UML csomagdiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>2. ábra – Az alrendszerek UML csomagdiagramja</em></p>
+
+      <h4>2.3.1. Játékkínálat alrendszer</h4>
+      <p>A játékok listáját, elérhetőségét és szabályait fogja össze. Osztályai: <strong>Játék</strong>, <strong>Játékszabály</strong>. Használati esetei: UC-01.</p>
+      <h4>2.3.2. Játékmenet alrendszer</h4>
+      <p>Az új kör indítását, a megengedett lépések feldolgozását és a kör egyszeri elszámolását kezeli. Osztályai: <strong>Játékkör</strong>, <strong>Köreredmény</strong>. Használati esetei: UC-04, UC-05, UC-06.</p>
+      <h4>2.3.3. Zseton- és állapotkezelés alrendszer</h4>
+      <p>A játékoshoz tartozó egyenleget, az aktív kört és a függő kéréseket tartja nyilván, valamint a megszakítás utáni helyreállításért felel. Osztályai: <strong>Játékos</strong>, <strong>Zsetonegyenleg</strong>, <strong>Játékállapot</strong>. Használati esetei: UC-07, UC-09.</p>
+      <h4>2.3.4. Fiók és előzmények alrendszer (opcionális)</h4>
+      <p>A regisztrációt, a be- és kijelentkezést, valamint a saját lezárt körök lekérdezését biztosítja, amennyiben a csapat a modult vállalja (SRS NY-03). Osztályai: <strong>Felhasználói fiók</strong>, <strong>Előzmény</strong>. Használati esetei: UC-02, UC-03, UC-08, UC-10.</p>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s3">3. A Játékkínálat alrendszer modellje</h2>
+      <h3 id="s3-1">3.1. Statikus modell</h3>
+      <h4>3.1.1. Kapcsolatok pontosítása</h4>
+      <p>A Játék és a Játékszabály között kompozíció áll fenn: egy játékhoz egy vagy több szabályverzió tartozik, és a szabályverzió a játék nélkül nem értelmezhető. Egy Játékkör pontosan egy Játékhoz és pontosan egy Játékszabály-verzióhoz kapcsolódik (az indításkor érvényeshez); így egy későbbi szabálymódosítás nem változtatja meg a már futó kör elszámolását (SRS 8.3).</p>
+      <h4>3.1.2. Attribútumok azonosítása</h4>
+      <p>A Játékhoz az azonosító, a név, a kategória és az elérhetőség tartozik (FK-01). A Játékszabály a verziót, a minimum- és maximumtétet, a tétlépcsőt és a kifizetési leírást tárolja (FK-02, FK-04).</p>
+      <h4>3.1.3. Bázisosztályok keresése</h4>
+      <p>A konkrét játékokat (például kártya-, asztali vagy gépes játék) a modell jelenleg nem írja le külön leszármazott osztályként, mert az SRS NY-01 szerint a végleges játéklista még nyitott. A közös adatok a Játék osztályban, a játékonként eltérő viselkedés a Játékszabály operációiban jelenik meg. A játékok véglegesítése után a Játékszabály leszármazottjaiként vehetők fel a játékspecifikus szabályok.</p>
+      <h3 id="s3-2">3.2. Dinamikus modell</h3>
+      <p><strong>UC-01 – Kínálat és játékszabályok megtekintése.</strong> A játékos (vagy látogató) megnyitja a kínálatot, kiválaszt egy játékot és megtekinti a szabályait. A művelet nem indít kört és nem változtatja az egyenleget; üres kínálat vagy betöltési hiba esetén a felület ezt külön jelzi.</p>
+<p style="text-align:center"><a href="abra/anal_04_szekv_uc01.svg"><img src="abra/anal_04_szekv_uc01.svg" alt="Szekvenciadiagram – UC-01 Kínálat és játékszabályok megtekintése" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>3. ábra – Szekvenciadiagram – UC-01 Kínálat és játékszabályok megtekintése</em></p>
+
+      <p>A Játék és a Játékszabály állapota a játékos szempontjából nem változik (kizárólag az elérhetőségi jelző módosulhat), ezért ezekhez külön állapotdiagram nem szükséges.</p>
+      <h3 id="s3-3">3.3. Funkcionális modell</h3>
+      <p>A kínálat lekérdezése a játékok listáját adja vissza névvel, kategóriával és elérhetőséggel. Egy játék kiválasztásakor a rendszer az <em>aktualisSzabaly()</em> művelettel megkeresi az érvényes szabályverziót, és megjeleníti a téthatárokat, a megengedett műveleteket és a kifizetési szabályt. Az <em>indithato()</em> csak akkor ad igaz értéket, ha a játék elérhető és van érvényes szabálya; ellenkező esetben a felület nem kínál indítási lehetőséget (FK-01, FK-02).</p>
+      <h3 id="s3-4">3.4. Operációk azonosítása</h3>
+      <p>A szekvenciadiagram alapján a Játék osztály az <em>aktualisSzabaly()</em>, <em>szabalyLekerdez(verzio)</em> és <em>indithato()</em> operációkat kapta. A Játékszabály operációit (<em>tetEllenoriz</em>, <em>lepesEngedelyezett</em>, <em>kimenetelMeghataroz</em>, <em>jovairasSzamit</em>) a Játékmenet alrendszer folyamatai indokolják, de a felelősség itt van, mert a szabály ismeri a korlátokat és a kifizetést.</p>
+      <h3 id="s3-5">3.5. Az analízis modell osztálydiagramja</h3>
+<p style="text-align:center"><a href="abra/anal_03_kinalat_osztalydiagram.svg"><img src="abra/anal_03_kinalat_osztalydiagram.svg" alt="A Játékkínálat alrendszer osztálydiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>4. ábra – A Játékkínálat alrendszer osztálydiagramja</em></p>
+
+      <h3 id="s3-6">3.6. Az analízis modell osztályainak listája</h3>
+<h4 id="c-jatek">3.6.1. Játék</h4>
+<p><strong>Felelőssége, feladata:</strong> A kínálatban megjelenő játékot írja le, és összekapcsolja a hozzá tartozó szabályverziókkal.</p>
+<p><strong>Együttműködők:</strong> Játékszabály, Játékkör.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>azonosito</td><td>szöveg</td><td>A játék egyedi azonosítója.</td></tr><tr><td>nev</td><td>szöveg</td><td>A felületen megjelenő név.</td></tr><tr><td>kategoria</td><td>szöveg</td><td>A játék besorolása (pl. kártya, asztali).</td></tr><tr><td>elerheto</td><td>logikai</td><td>Indítható-e jelenleg a játék.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>aktualisSzabaly</td><td>–</td><td>Visszaadja a jelenleg érvényes szabályverziót.</td></tr><tr><td>szabalyLekerdez</td><td>verzio</td><td>Megadott szabályverzió lekérése (pl. egy futó kör elszámolásához).</td></tr><tr><td>indithato</td><td>–</td><td>Igaz, ha a játék elérhető és van érvényes szabálya.</td></tr></tbody></table>
+<h4 id="c-szabaly">3.6.2. Játékszabály</h4>
+<p><strong>Felelőssége, feladata:</strong> Egy játék adott verziójának tétkorlátait, megengedett lépéseit és kifizetési szabályát tartalmazza.</p>
+<p><strong>Együttműködők:</strong> Játék, Játékkör.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>verzio</td><td>szöveg</td><td>A szabályváltozat azonosítója.</td></tr><tr><td>minimumTet</td><td>egész</td><td>A legkisebb elfogadott tét.</td></tr><tr><td>maximumTet</td><td>egész</td><td>A legnagyobb elfogadott tét.</td></tr><tr><td>tetLepcso</td><td>egész</td><td>A tét megengedett lépésköze.</td></tr><tr><td>kifizetesiLeiras</td><td>szöveg</td><td>A kimenetelek és a teljes jóváírás szabálya.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>tetEllenoriz</td><td>tet</td><td>Ellenőrzi a tét formátumát, pozitív értékét, lépcsőjét és korlátait (FK-04).</td></tr><tr><td>lepesEngedelyezett</td><td>allapot, muvelet</td><td>Eldönti, hogy az adott körállapotban a művelet megengedett-e (FK-06).</td></tr><tr><td>kimenetelMeghataroz</td><td>korAdatok</td><td>A kör adataiból meghatározza a végső kimenetelt.</td></tr><tr><td>jovairasSzamit</td><td>kimenetel, tet</td><td>Kiszámítja a teljes jóváírást; vereségnél 0 (FK-07).</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s4">4. A Játékmenet alrendszer modellje</h2>
+      <h3 id="s4-1">4.1. Statikus modell</h3>
+      <h4>4.1.1. Kapcsolatok pontosítása</h4>
+      <p>Egy Játékoshoz és egy Játékhoz több Játékkör tartozhat, de egy kör pontosan egy játékoshoz és egy szabályverzióhoz kapcsolódik. A Játékkör és a Köreredmény között kompozíció áll fenn: az eredmény a kör része, legfeljebb egy lehet belőle, és csak a lezáráskor jön létre. A Játékkör a Zsetonegyenleget használja a tét levonására és a jóváírásra, a Játékállapotban pedig beállítja, illetve törli az aktív kört.</p>
+      <h4>4.1.2. Attribútumok azonosítása</h4>
+      <p>A Játékkör tárolja a körazonosítót, a tétet, az állapotot, az indításkori szabályverziót, az indítást kérő kérés azonosítóját (az ismételt kérések felismeréséhez, FK-12) és a játék közbeni adatokat (például kiosztott lapok). A Köreredmény a kimenetelt, a teljes jóváírást, a végső egyenleget és a lezárás idejét rögzíti (FK-10).</p>
+      <h4>4.1.3. Bázisosztályok keresése</h4>
+      <p>A különböző játékok körei a közös Játékkör osztállyal írhatók le; a játékspecifikus eltéréseket a szabályok és a <em>korAdatok</em> tartalma adja. A kör állapotát a <strong>KörÁllapot</strong> felsorolás (AKTÍV, TISZTÁZANDÓ, LEZÁRT) írja le.</p>
+      <h3 id="s4-2">4.2. Dinamikus modell</h3>
+      <p><strong>UC-04 – Tét megadása és kör indítása.</strong> A rendszer először a kérésazonosító alapján ellenőrzi, hogy nem ismételt kérésről van-e szó; ezután vizsgálja az aktív kör hiányát, a tétkorlátokat és a fedezetet. Csak érvényes tétnél jön létre a kör, és ezzel együtt, egy lépésben történik a tét levonása (FK-04, FK-05, FK-12).</p>
+<p style="text-align:center"><a href="abra/anal_06_szekv_uc04.svg"><img src="abra/anal_06_szekv_uc04.svg" alt="Szekvenciadiagram – UC-04 Tét megadása és kör indítása" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>5. ábra – Szekvenciadiagram – UC-04 Tét megadása és kör indítása</em></p>
+
+      <p><strong>UC-05 – Kör lejátszása és UC-06 – Kör elszámolása.</strong> A játékos a befejezési feltételig lépéseket választ; minden lépést a szabály engedélyez vagy elutasít, a tiltott lépés nem változtat állapotot. A kör végén a Játékkör meghatározza a kimenetelt, létrehozza a Köreredményt, egyszer jóváírja a teljes összeget és törli az aktív kört. Ismételt lezárási kérés a meglévő eredményt adja vissza (FK-06–FK-08).</p>
+<p style="text-align:center"><a href="abra/anal_07_szekv_uc05_uc06.svg"><img src="abra/anal_07_szekv_uc05_uc06.svg" alt="Szekvenciadiagram – UC-05 Kör lejátszása és UC-06 Kör elszámolása" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>6. ábra – Szekvenciadiagram – UC-05 Kör lejátszása és UC-06 Kör elszámolása</em></p>
+
+      <p><strong>A Játékkör állapotai.</strong> A kör a tét levonásával aktív állapotba kerül. Kapcsolatvesztés vagy bizonytalan válasz esetén tisztázandó állapotba lép, ahonnan a rögzített adatok alapján tér vissza az aktív állapotba vagy kerül lezártra; új véletlen eredmény ilyenkor nem keletkezik (SRS M-04).</p>
+<p style="text-align:center"><a href="abra/anal_08_allapot_jatekkor.svg"><img src="abra/anal_08_allapot_jatekkor.svg" alt="A Játékkör osztály állapotdiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>7. ábra – A Játékkör osztály állapotdiagramja</em></p>
+
+      <h3 id="s4-3">4.3. Funkcionális modell</h3>
+      <p>A körindítás és az elszámolás legfontosabb feldolgozási lépéseit az alábbi aktivitásdiagram mutatja. A tétellenőrzés után a kör létrehozása és a tét levonása egyetlen, együtt érvényesülő lépés: nem maradhat levont tét kör nélkül (SRS M-02). A kör végén a teljes jóváírás a kör indításakor rögzített szabályverzió szerint számítandó, és a végső egyenleg:</p>
+      <p style="text-align:center"><strong>végső egyenleg = induló egyenleg − tét + teljes jóváírás</strong></p>
+      <p>Például 1000 − 100 + 200 = 1100 zseton, ahol a nettó eredmény +100. A végleges elszámolás nem ismételhető meg; a második kérés ugyanazt a Köreredményt kapja vissza.</p>
+<p style="text-align:center"><a href="abra/anal_09_aktivitas_kor.svg"><img src="abra/anal_09_aktivitas_kor.svg" alt="Aktivitásdiagram – körindítás és elszámolás" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>8. ábra – Aktivitásdiagram – körindítás és elszámolás</em></p>
+
+      <h3 id="s4-4">4.4. Operációk azonosítása</h3>
+      <p>A szekvenciadiagramok alapján a Játékkör az <em>indit</em>, <em>lepesVegrehajt</em>, <em>befejezett</em>, <em>lezar</em> és <em>allapotLekerdez</em> operációkat kapta. Az <em>indit</em> argumentuma a kérésazonosító is, hogy az ismételt indítás felismerhető legyen. A Köreredmény a nettó eredmény számításáért és a megjelenítendő adatok összeállításáért felel.</p>
+      <h3 id="s4-5">4.5. Az analízis modell osztálydiagramja</h3>
+<p style="text-align:center"><a href="abra/anal_05_jatekmenet_osztalydiagram.svg"><img src="abra/anal_05_jatekmenet_osztalydiagram.svg" alt="A Játékmenet alrendszer osztálydiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>9. ábra – A Játékmenet alrendszer osztálydiagramja</em></p>
+
+      <h3 id="s4-6">4.6. Az analízis modell osztályainak listája</h3>
+<h4 id="c-kor">4.6.1. Játékkör</h4>
+<p><strong>Felelőssége, feladata:</strong> Egy elfogadott tétből induló játékfolyamatot képvisel; a lépéseket a szabály szerint dolgozza fel, és pontosan egyszer zárja le és számolja el a kört.</p>
+<p><strong>Együttműködők:</strong> Játék, Játékszabály, Játékos, Köreredmény, Zsetonegyenleg, Játékállapot.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>korAzonosito</td><td>szöveg</td><td>A kör egyedi azonosítója.</td></tr><tr><td>tet</td><td>egész</td><td>Az indításkor levont tét.</td></tr><tr><td>allapot</td><td>KörÁllapot</td><td>AKTÍV, TISZTÁZANDÓ vagy LEZÁRT.</td></tr><tr><td>szabalyVerzio</td><td>szöveg</td><td>Az indításkor érvényes szabályverzió.</td></tr><tr><td>inditasiKeresAzonosito</td><td>szöveg</td><td>Az indítást kérő kérés azonosítója; ismételt kérés felismerésére.</td></tr><tr><td>korAdatok</td><td>szöveg</td><td>A játék közbeni állapot (pl. kiosztott lapok, pörgetés eredménye).</td></tr><tr><td>inditasIdeje</td><td>időpont</td><td>A kör indításának időpontja.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>indit</td><td>jatekos, szabaly, tet, keresAzonosito</td><td>Létrehozza a kört és kezdeményezi a tét egyszeri levonását.</td></tr><tr><td>lepesVegrehajt</td><td>muvelet</td><td>Engedélyezett lépés feldolgozása; tiltott lépésnél nincs állapotváltozás.</td></tr><tr><td>befejezett</td><td>–</td><td>Igaz, ha teljesült a befejezési feltétel.</td></tr><tr><td>lezar</td><td>–</td><td>Egyszeri elszámolás: kimenetel, jóváírás, Köreredmény; ismételt hívásnál a meglévő eredmény.</td></tr><tr><td>allapotLekerdez</td><td>–</td><td>A rögzített körállapot lekérése (helyreállításhoz).</td></tr></tbody></table>
+<h4 id="c-ered">4.6.2. Köreredmény</h4>
+<p><strong>Felelőssége, feladata:</strong> A lezárt kör végleges kimenetelét és elszámolását rögzíti; ebből készül az eredménypanel és az előzménylista.</p>
+<p><strong>Együttműködők:</strong> Játékkör, Zsetonegyenleg, Előzmény.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>kimenetel</td><td>szöveg</td><td>Nyerés, vereség vagy döntetlen (játékonként pontosítva).</td></tr><tr><td>teljesJovairas</td><td>egész</td><td>A kör végén visszakerülő teljes összeg.</td></tr><tr><td>vegsoEgyenleg</td><td>egész</td><td>Az egyenleg a jóváírás után.</td></tr><tr><td>lezarasIdeje</td><td>időpont</td><td>A lezárás időpontja.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>nettoEredmeny</td><td>–</td><td>Teljes jóváírás és tét különbsége.</td></tr><tr><td>eredmenyMegjelenit</td><td>–</td><td>Játék, tét, kimenetel, jóváírás és végső egyenleg összeállítása (FK-10).</td></tr></tbody></table>
+<h4 id="c-korall">4.6.3. KörÁllapot (felsorolás)</h4>
+<p><strong>Felelőssége, feladata:</strong> A Játékkör lehetséges állapotait sorolja fel.</p>
+<p><strong>Együttműködők:</strong> Játékkör.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>AKTÍV</td><td>–</td><td>A tét levonva, a kör folyamatban van.</td></tr><tr><td>TISZTÁZANDÓ</td><td>–</td><td>Megszakítás miatt a kör állapotát ellenőrizni kell.</td></tr><tr><td>LEZÁRT</td><td>–</td><td>Az elszámolás megtörtént, a kör végleges.</td></tr></tbody></table>
+
+    </section>
+
+  </main>
+</body>
+
+</html>
