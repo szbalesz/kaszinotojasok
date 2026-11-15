@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaszinótojások – Analízis modell 1.0</title>
+  <title>Kaszinótojások – Analízis modell 1.1</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,13 +20,13 @@
       <table>
         <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
       </table>
-      <p class="date">Verzió: 1.0<br>2026. 11. 14.</p>
+      <p class="date">Verzió: 1.1<br>2026. 11. 15.</p>
     </section>
     <section class="page">
       <h2 id="tortenet">Történet</h2>
       <table>
         <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
-        <tbody><tr><td>2026. 11. 14.</td><td>1.0</td><td>Kezdeti osztálydiagram és alrendszerek; a Játékkínálat és a Játékmenet alrendszer modellje (1–4. fejezet).</td><td>Bari Szabolcs</td></tr></tbody>
+        <tbody><tr><td>2026. 11. 14.</td><td>1.0</td><td>Kezdeti osztálydiagram és alrendszerek; a Játékkínálat és a Játékmenet alrendszer modellje (1–4. fejezet).</td><td>Bari Szabolcs</td></tr><tr><td>2026. 11. 15.</td><td>1.1</td><td>A Zseton- és állapotkezelés alrendszer modellje (5. fejezet).</td><td>Varga Ákos</td></tr></tbody>
       </table>
       <h2 id="tartalom">Tartalomjegyzék</h2>
       <ul class="toc">
@@ -52,6 +52,13 @@
         <li style="margin-left:18px"><a href="#s4-4">4.4. Operációk azonosítása</a></li>
         <li style="margin-left:18px"><a href="#s4-5">4.5. Az analízis modell osztálydiagramja</a></li>
         <li style="margin-left:18px"><a href="#s4-6">4.6. Az analízis modell osztályainak listája</a></li>
+        <li><a href="#s5">5. A Zseton- és állapotkezelés alrendszer modellje</a></li>
+        <li style="margin-left:18px"><a href="#s5-1">5.1. Statikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s5-2">5.2. Dinamikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s5-3">5.3. Funkcionális modell</a></li>
+        <li style="margin-left:18px"><a href="#s5-4">5.4. Operációk azonosítása</a></li>
+        <li style="margin-left:18px"><a href="#s5-5">5.5. Az analízis modell osztálydiagramja</a></li>
+        <li style="margin-left:18px"><a href="#s5-6">5.6. Az analízis modell osztályainak listája</a></li>
       </ul>
     </section>
     <section class="page">
@@ -195,6 +202,64 @@
 <p><strong>Együttműködők:</strong> Játékkör.</p>
 <p><strong>Attribútumok</strong></p>
 <table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>AKTÍV</td><td>–</td><td>A tét levonva, a kör folyamatban van.</td></tr><tr><td>TISZTÁZANDÓ</td><td>–</td><td>Megszakítás miatt a kör állapotát ellenőrizni kell.</td></tr><tr><td>LEZÁRT</td><td>–</td><td>Az elszámolás megtörtént, a kör végleges.</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s5">5. A Zseton- és állapotkezelés alrendszer modellje</h2>
+      <h3 id="s5-1">5.1. Statikus modell</h3>
+      <h4>5.1.1. Kapcsolatok pontosítása</h4>
+      <p>Egy Játékoshoz pontosan egy Zsetonegyenleg és egy Játékállapot tartozik (kompozíció: a játékos megszűnésével ezek is megszűnnek). A Játékállapot legfeljebb egy aktív Játékkörre hivatkozik, így a játékosnak egyszerre legfeljebb egy aktív köre lehet (FK-05). A Játékos opcionálisan egy Felhasználói fiókhoz kapcsolódik.</p>
+      <h4>5.1.2. Attribútumok azonosítása</h4>
+      <p>A Zsetonegyenleg egyetlen lényeges adata az elkölthető zsetonok száma, amely nem lehet negatív (FK-09). A Játékállapot az aktív kör azonosítóját, az utolsó feldolgozott kérés azonosítóját és a függő kérés jelzőt tárolja; ezek teszik lehetővé az ismételt kérések kiszűrését és a helyreállítást (FK-12).</p>
+      <h4>5.1.3. Bázisosztályok keresése</h4>
+      <p>Az SRS a Regisztrált játékost a Játékos specializált szerepeként írja le. Az analízis modellben ezt nem öröklődés, hanem a Játékos és a Felhasználói fiók közötti 0..1 multiplicitású asszociáció írja le. Ennek előnye, hogy a vendégként kezdett játékos állapota a regisztráció után is ugyanaz az objektum marad, és a közös adatok nem ismétlődnek két osztályban.</p>
+      <h3 id="s5-2">5.2. Dinamikus modell</h3>
+      <p><strong>UC-07 – Egyenleg és saját adatok megtekintése.</strong> A lekérdezés nem módosít adatot. Lekérdezési hiba esetén a felület hibaüzenetet ad, és nem jelenít meg helyettesítő nulla egyenleget.</p>
+<p style="text-align:center"><a href="abra/anal_11_szekv_uc07.svg"><img src="abra/anal_11_szekv_uc07.svg" alt="Szekvenciadiagram – UC-07 Egyenleg és saját adatok megtekintése" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>10. ábra – Szekvenciadiagram – UC-07 Egyenleg és saját adatok megtekintése</em></p>
+
+      <p><strong>UC-09 – Játék elhagyása és helyreállítás.</strong> Aktív kör esetén a rendszer figyelmeztet, hogy a kör és a tét megmarad. Visszatéréskor vagy megszakítás után a Játékállapot a kör- vagy kérésazonosító alapján a rögzített körállapotot olvassa vissza; új kör pusztán a kérés ismétlése miatt nem jön létre.</p>
+<p style="text-align:center"><a href="abra/anal_12_szekv_uc09.svg"><img src="abra/anal_12_szekv_uc09.svg" alt="Szekvenciadiagram – UC-09 Játék elhagyása és az állapot helyreállítása" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>11. ábra – Szekvenciadiagram – UC-09 Játék elhagyása és az állapot helyreállítása</em></p>
+
+      <p><strong>A Játékállapot állapotai.</strong> A Játékállapot objektum állapota attól függ, hogy van-e függő indítási kérés vagy aktív kör. Az ismételt, azonos kérésazonosítójú kérés nem okoz állapotváltozást.</p>
+<p style="text-align:center"><a href="abra/anal_13_allapot_jatekallapot.svg"><img src="abra/anal_13_allapot_jatekallapot.svg" alt="A Játékállapot osztály állapotdiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>12. ábra – A Játékállapot osztály állapotdiagramja</em></p>
+
+      <h3 id="s5-3">5.3. Funkcionális modell</h3>
+      <p>Az egyenlegkezelés két művelete a tét levonása és a teljes jóváírás. Mindkettő körazonosítóhoz kötött, ezért ugyanahhoz a körhöz legfeljebb egy levonás és egy jóváírás tartozhat; a már rögzített művelet ismétlése a korábbi eredményt adja vissza. Levonás előtt a fedezet ellenőrzése kötelező, az egyenleg nem lehet negatív. A helyreállítás mindig a rögzített adatokból történik, nem új eredmény előállításával (SRS M-03, M-04).</p>
+<p style="text-align:center"><a href="abra/anal_14_aktivitas_egyenleg.svg"><img src="abra/anal_14_aktivitas_egyenleg.svg" alt="Aktivitásdiagram – egyenlegmódosítás (levonás, jóváírás)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>13. ábra – Aktivitásdiagram – egyenlegmódosítás (levonás, jóváírás)</em></p>
+
+      <h3 id="s5-4">5.4. Operációk azonosítása</h3>
+      <p>A Zsetonegyenleg a <em>lekerdez</em>, <em>fedezetEllenoriz</em>, <em>tetLevon</em> és <em>jovair</em> operációkat kapta; az utóbbi kettő a körazonosítót is átveszi az ismétlés felismeréséhez. A Játékállapot a kérésnyilvántartás (<em>keresRegisztral</em>), az aktív kör kezelése (<em>aktivKorLekerdez</em>, <em>aktivKorBeallit</em>, <em>aktivKorTorol</em>) és a helyreállítás (<em>allapotHelyreallit</em>) műveleteit kapta. A Játékos a felület felé egységes belépési pontot ad (<em>allapotMegtekint</em>, <em>korIndit</em>, <em>jatekElhagy</em>).</p>
+      <h3 id="s5-5">5.5. Az analízis modell osztálydiagramja</h3>
+<p style="text-align:center"><a href="abra/anal_10_zseton_osztalydiagram.svg"><img src="abra/anal_10_zseton_osztalydiagram.svg" alt="A Zseton- és állapotkezelés alrendszer osztálydiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>14. ábra – A Zseton- és állapotkezelés alrendszer osztálydiagramja</em></p>
+
+      <h3 id="s5-6">5.6. Az analízis modell osztályainak listája</h3>
+<h4 id="c-jatekos">5.6.1. Játékos</h4>
+<p><strong>Felelőssége, feladata:</strong> Az alkalmazást használó személyhez tartozó állapotot fogja össze; vendégként fiók nélkül is létezhet.</p>
+<p><strong>Együttműködők:</strong> Játékkör, Zsetonegyenleg, Játékállapot, Felhasználói fiók.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>jatekosAzonosito</td><td>szöveg</td><td>A játékos egyedi azonosítója.</td></tr><tr><td>vendeg</td><td>logikai</td><td>Igaz, ha nincs hozzá fiók.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>allapotMegtekint</td><td>–</td><td>Egyenleg, aktív tét és (fiók esetén) felhasználónév lekérése (UC-07).</td></tr><tr><td>korIndit</td><td>jatek, tet, keresAzonosito</td><td>Ellenőrzések után új kör indítása (UC-04).</td></tr><tr><td>jatekElhagy</td><td>–</td><td>Visszatérés a kínálatba; aktív kör esetén figyelmeztetés (UC-09).</td></tr></tbody></table>
+<h4 id="c-egyenleg">5.6.2. Zsetonegyenleg</h4>
+<p><strong>Felelőssége, feladata:</strong> A játékos elkölthető virtuális zsetonjait tartja nyilván; nem enged negatív egyenleget, sem ismételt levonást vagy jóváírást.</p>
+<p><strong>Együttműködők:</strong> Játékos, Játékkör, Köreredmény.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>elerhetoZseton</td><td>egész</td><td>Az elkölthető zsetonok száma (≥ 0).</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>lekerdez</td><td>–</td><td>Az aktuális egyenleg.</td></tr><tr><td>fedezetEllenoriz</td><td>tet</td><td>Igaz, ha a tét nem nagyobb az egyenlegnél.</td></tr><tr><td>tetLevon</td><td>tet, korAzonosito</td><td>Egyszeri, ellenőrzött tétlevonás a körhöz.</td></tr><tr><td>jovair</td><td>osszeg, korAzonosito</td><td>Egyszeri jóváírás a kör lezárásakor.</td></tr></tbody></table>
+<h4 id="c-allapot">5.6.3. Játékállapot</h4>
+<p><strong>Felelőssége, feladata:</strong> A játékos aktív körét és a folyamatban lévő kéréseket tartja nyilván; megszakítás után ebből történik a helyreállítás.</p>
+<p><strong>Együttműködők:</strong> Játékos, Játékkör, Zsetonegyenleg.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>aktivKorAzonosito</td><td>szöveg [0..1]</td><td>A folyamatban lévő kör azonosítója vagy üres.</td></tr><tr><td>utolsoKeresAzonosito</td><td>szöveg [0..1]</td><td>Az utoljára feldolgozott kérés azonosítója.</td></tr><tr><td>fuggoKeres</td><td>logikai</td><td>Van-e még nem tisztázott kimenetelű kérés.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>aktivKorLekerdez</td><td>–</td><td>A folyamatban lévő kör megkeresése.</td></tr><tr><td>keresRegisztral</td><td>keresAzonosito</td><td>Új kérés rögzítése; ismételt kérésnél hamis.</td></tr><tr><td>aktivKorBeallit</td><td>korAzonosito</td><td>Az új kör aktívvá tétele.</td></tr><tr><td>aktivKorTorol</td><td>–</td><td>Lezáráskor az aktív kör törlése.</td></tr><tr><td>allapotHelyreallit</td><td>azonosito</td><td>Megszakítás utáni állapottisztázás a rögzített adatokból.</td></tr></tbody></table>
 
     </section>
 
