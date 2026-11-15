@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaszinótojások – Analízis modell 1.1</title>
+  <title>Kaszinótojások – Analízis modell 1.2</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,13 +20,13 @@
       <table>
         <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
       </table>
-      <p class="date">Verzió: 1.1<br>2026. 11. 15.</p>
+      <p class="date">Verzió: 1.2<br>2026. 11. 15.</p>
     </section>
     <section class="page">
       <h2 id="tortenet">Történet</h2>
       <table>
         <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
-        <tbody><tr><td>2026. 11. 14.</td><td>1.0</td><td>Kezdeti osztálydiagram és alrendszerek; a Játékkínálat és a Játékmenet alrendszer modellje (1–4. fejezet).</td><td>Bari Szabolcs</td></tr><tr><td>2026. 11. 15.</td><td>1.1</td><td>A Zseton- és állapotkezelés alrendszer modellje (5. fejezet).</td><td>Varga Ákos</td></tr></tbody>
+        <tbody><tr><td>2026. 11. 14.</td><td>1.0</td><td>Kezdeti osztálydiagram és alrendszerek; a Játékkínálat és a Játékmenet alrendszer modellje (1–4. fejezet).</td><td>Bari Szabolcs</td></tr><tr><td>2026. 11. 15.</td><td>1.1</td><td>A Zseton- és állapotkezelés alrendszer modellje (5. fejezet).</td><td>Varga Ákos</td></tr><tr><td>2026. 11. 15.</td><td>1.2</td><td>A Fiók és előzmények alrendszer modellje, végleges osztálydiagram és mellékletek (6–7. fejezet).</td><td>Száraz Bálint Csaba</td></tr></tbody>
       </table>
       <h2 id="tartalom">Tartalomjegyzék</h2>
       <ul class="toc">
@@ -59,6 +59,18 @@
         <li style="margin-left:18px"><a href="#s5-4">5.4. Operációk azonosítása</a></li>
         <li style="margin-left:18px"><a href="#s5-5">5.5. Az analízis modell osztálydiagramja</a></li>
         <li style="margin-left:18px"><a href="#s5-6">5.6. Az analízis modell osztályainak listája</a></li>
+        <li><a href="#s6">6. A Fiók és előzmények alrendszer modellje (opcionális)</a></li>
+        <li style="margin-left:18px"><a href="#s6-1">6.1. Statikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s6-2">6.2. Dinamikus modell</a></li>
+        <li style="margin-left:18px"><a href="#s6-3">6.3. Funkcionális modell</a></li>
+        <li style="margin-left:18px"><a href="#s6-4">6.4. Operációk azonosítása</a></li>
+        <li style="margin-left:18px"><a href="#s6-5">6.5. Az analízis modell osztálydiagramja</a></li>
+        <li style="margin-left:18px"><a href="#s6-6">6.6. Az analízis modell osztályainak listája</a></li>
+        <li><a href="#s7">7. Mellékletek</a></li>
+        <li style="margin-left:18px"><a href="#s7-1">7.1. A teljes, végleges analízis szintű osztálydiagram</a></li>
+        <li style="margin-left:18px"><a href="#s7-2">7.2. Használati esetek és osztályok megfeleltetése</a></li>
+        <li style="margin-left:18px"><a href="#s7-3">7.3. Nyitott tervezési kérdések</a></li>
+        <li style="margin-left:18px"><a href="#s7-4">7.4. Kapcsolódó dokumentumok</a></li>
       </ul>
     </section>
     <section class="page">
@@ -260,6 +272,81 @@
 <table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>aktivKorAzonosito</td><td>szöveg [0..1]</td><td>A folyamatban lévő kör azonosítója vagy üres.</td></tr><tr><td>utolsoKeresAzonosito</td><td>szöveg [0..1]</td><td>Az utoljára feldolgozott kérés azonosítója.</td></tr><tr><td>fuggoKeres</td><td>logikai</td><td>Van-e még nem tisztázott kimenetelű kérés.</td></tr></tbody></table>
 <p><strong>Operációk</strong></p>
 <table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>aktivKorLekerdez</td><td>–</td><td>A folyamatban lévő kör megkeresése.</td></tr><tr><td>keresRegisztral</td><td>keresAzonosito</td><td>Új kérés rögzítése; ismételt kérésnél hamis.</td></tr><tr><td>aktivKorBeallit</td><td>korAzonosito</td><td>Az új kör aktívvá tétele.</td></tr><tr><td>aktivKorTorol</td><td>–</td><td>Lezáráskor az aktív kör törlése.</td></tr><tr><td>allapotHelyreallit</td><td>azonosito</td><td>Megszakítás utáni állapottisztázás a rögzített adatokból.</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s6">6. A Fiók és előzmények alrendszer modellje (opcionális)</h2>
+      <h3 id="s6-1">6.1. Statikus modell</h3>
+      <h4>6.1.1. Kapcsolatok pontosítása</h4>
+      <p>Egy Játékoshoz legfeljebb egy Felhasználói fiók tartozik; a rendszer vendégként, fiók nélkül is használható. A fiókhoz pontosan egy Előzmény tartozik (kompozíció), amely a játékos saját, már lezárt Köreredményeit aggregálja. Az aktív kör nem része az előzménynek (SRS UC-08).</p>
+      <h4>6.1.2. Attribútumok azonosítása</h4>
+      <p>A Felhasználói fiók a felhasználónevet, a jelszó nem visszafejthető lenyomatát (SRS M-08) és a létrehozás idejét tárolja. A jelszó nyílt szöveges alakban sem tárolásra, sem megjelenítésre nem kerül. Az Előzmény a lezárt körökre mutató hivatkozások listája.</p>
+      <h4>6.1.3. Bázisosztályok keresése</h4>
+      <p>A Felhasználói fiók nem a Játékos bázisosztálya, hanem opcionálisan hozzá kapcsolódó objektum (lásd 5.1.3). Az Előzmény és a Köreredmény között nincs öröklés: az előzmény csak lekérdezési nézet a lezárt körökre.</p>
+      <h3 id="s6-2">6.2. Dinamikus modell</h3>
+      <p><strong>UC-02 – Regisztráció.</strong> A rendszer ellenőrzi a kötelező mezőket, a jelszóismétlést és a név egyediségét. Siker esetén pontosan egy fiók és egy kezdőállapot (kezdőzsetonnal) jön létre; hibánál nincs részleges fiók.</p>
+<p style="text-align:center"><a href="abra/anal_16_szekv_uc02.svg"><img src="abra/anal_16_szekv_uc02.svg" alt="Szekvenciadiagram – UC-02 Regisztráció" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>15. ábra – Szekvenciadiagram – UC-02 Regisztráció</em></p>
+
+      <p><strong>UC-03 – Bejelentkezés és UC-10 – Kijelentkezés.</strong> Helyes adatoknál a fiókhoz tartozó meglévő állapot töltődik be, új kezdőzseton nélkül; aktív kör esetén a felület a folyamatban lévő körhöz navigál. Kijelentkezéskor a munkamenet megszűnik, de az egyenleg és az aktív kör megmarad.</p>
+<p style="text-align:center"><a href="abra/anal_17_szekv_uc03_uc10.svg"><img src="abra/anal_17_szekv_uc03_uc10.svg" alt="Szekvenciadiagram – UC-03 Bejelentkezés és UC-10 Kijelentkezés" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>16. ábra – Szekvenciadiagram – UC-03 Bejelentkezés és UC-10 Kijelentkezés</em></p>
+
+      <p><strong>UC-08 – Korábbi eredmények megtekintése.</strong> A bejelentkezett játékos saját lezárt körei a legújabbal kezdve, oldalanként legfeljebb 50 rekordban jelennek meg (SRS T-06). Az üres lista és a lekérdezési hiba külön üzenetet kap.</p>
+<p style="text-align:center"><a href="abra/anal_18_szekv_uc08.svg"><img src="abra/anal_18_szekv_uc08.svg" alt="Szekvenciadiagram – UC-08 Korábbi eredmények megtekintése" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>17. ábra – Szekvenciadiagram – UC-08 Korábbi eredmények megtekintése</em></p>
+
+      <p><strong>A Felhasználói fiók állapotai</strong> a munkamenet szempontjából:</p>
+<p style="text-align:center"><a href="abra/anal_19_allapot_fiok.svg"><img src="abra/anal_19_allapot_fiok.svg" alt="A Felhasználói fiók osztály állapotdiagramja (munkamenet)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>18. ábra – A Felhasználói fiók osztály állapotdiagramja (munkamenet)</em></p>
+
+      <h3 id="s6-3">6.3. Funkcionális modell</h3>
+      <p><strong>Regisztráció:</strong> mezőellenőrzés → egyediségvizsgálat → jelszólenyomat képzése → fiók, játékos és kezdőegyenleg létrehozása egy lépésben → visszajelzés. <strong>Bejelentkezés:</strong> a megadott jelszóból képzett lenyomat összevetése a tárolttal; hibás adatoknál általános hibaüzenet, amely nem árulja el, hogy a név vagy a jelszó volt-e hibás. <strong>Előzmény:</strong> kizárólag a bejelentkezett játékos saját lezárt köreit adja vissza; más felhasználó adatai azonosító átírásával sem érhetők el (SRS M-07).</p>
+      <h3 id="s6-4">6.4. Operációk azonosítása</h3>
+      <p>A Felhasználói fiók a <em>regisztral</em>, <em>belep</em>, <em>kijelentkezik</em> és <em>adatokMegjelenit</em> operációkat kapta. Az Előzmény a <em>korHozzaad</em> (a kör lezárásakor hívódik) és a lapozott <em>sajatKorokLekerdez</em> műveletekkel rendelkezik.</p>
+      <h3 id="s6-5">6.5. Az analízis modell osztálydiagramja</h3>
+<p style="text-align:center"><a href="abra/anal_15_fiok_osztalydiagram.svg"><img src="abra/anal_15_fiok_osztalydiagram.svg" alt="A Fiók és előzmények alrendszer osztálydiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>19. ábra – A Fiók és előzmények alrendszer osztálydiagramja</em></p>
+
+      <h3 id="s6-6">6.6. Az analízis modell osztályainak listája</h3>
+<h4 id="c-fiok">6.6.1. Felhasználói fiók</h4>
+<p><strong>Felelőssége, feladata:</strong> Opcionális osztály: a regisztrált játékos azonosítását, a be- és kijelentkezést, valamint a fiókhoz tartozó állapot betöltését biztosítja.</p>
+<p><strong>Együttműködők:</strong> Játékos, Játékállapot, Előzmény.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>felhasznalonev</td><td>szöveg</td><td>Egyedi, a fiókhoz választott név.</td></tr><tr><td>jelszoLenyomat</td><td>szöveg</td><td>A jelszó sózott, nem visszafejthető lenyomata.</td></tr><tr><td>letrehozva</td><td>időpont</td><td>A regisztráció időpontja.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>regisztral</td><td>nev, jelszo, jelszoIsmet</td><td>Ellenőrzés után fiók és kezdőállapot létrehozása (FK-13).</td></tr><tr><td>belep</td><td>nev, jelszo</td><td>Hitelesítés és a meglévő állapot betöltése (FK-14).</td></tr><tr><td>kijelentkezik</td><td>–</td><td>Az aktív munkamenet megszüntetése.</td></tr><tr><td>adatokMegjelenit</td><td>–</td><td>Felhasználónév és egyenleg, jelszó nélkül (FK-15).</td></tr></tbody></table>
+<h4 id="c-elozmeny">6.6.2. Előzmény</h4>
+<p><strong>Felelőssége, feladata:</strong> Opcionális osztály: a regisztrált játékos lezárt köreit teszi időrendben, lapozva visszakereshetővé.</p>
+<p><strong>Együttműködők:</strong> Felhasználói fiók, Köreredmény.</p>
+<p><strong>Attribútumok</strong></p>
+<table><thead><tr><th>Név</th><th>Típus</th><th>Leírás</th></tr></thead><tbody><tr><td>lezartKorok</td><td>Köreredmény [0..*]</td><td>A saját lezárt körök hivatkozásai.</td></tr></tbody></table>
+<p><strong>Operációk</strong></p>
+<table><thead><tr><th>Név</th><th>Argumentumok</th><th>Működése, feladata</th></tr></thead><tbody><tr><td>korHozzaad</td><td>eredmeny</td><td>Lezárt kör felvétele az előzménybe.</td></tr><tr><td>sajatKorokLekerdez</td><td>oldal</td><td>Legfeljebb 50 lezárt kör a legújabbal kezdve (FK-16).</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="s7">7. Mellékletek</h2>
+      <h3 id="s7-1">7.1. A teljes, végleges analízis szintű osztálydiagram</h3>
+      <p>Az alábbi ábra a négy alrendszer osztályait együtt mutatja, a dinamikus és funkcionális modell alapján meghatározott operációkkal és kapcsolatokkal. Az egyes osztályok részletes leírása a saját alrendszerük 6. alpontjában található.</p>
+<p style="text-align:center"><a href="abra/anal_20_vegleges_osztalydiagram.svg"><img src="abra/anal_20_vegleges_osztalydiagram.svg" alt="A teljes analízis modell végleges osztálydiagramja" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>20. ábra – A teljes analízis modell végleges osztálydiagramja</em></p>
+
+      <h3 id="s7-2">7.2. Használati esetek és osztályok megfeleltetése</h3>
+<table><thead><tr><th>Használati eset</th><th>Részt vevő osztályok</th><th>Ábrák</th></tr></thead><tbody><tr><td>UC-01 Kínálat és szabályok</td><td>Játék, Játékszabály</td><td>szekvenciadiagram (3.2)</td></tr><tr><td>UC-02 Regisztráció *</td><td>Felhasználói fiók, Játékos, Zsetonegyenleg</td><td>szekvenciadiagram (6.2)</td></tr><tr><td>UC-03 Bejelentkezés *</td><td>Felhasználói fiók, Játékos, Játékállapot</td><td>szekvencia- és állapotdiagram (6.2)</td></tr><tr><td>UC-04 Tét és kör indítása</td><td>Játékos, Játékállapot, Játékszabály, Zsetonegyenleg, Játékkör</td><td>szekvencia- és aktivitásdiagram (4.2, 4.3)</td></tr><tr><td>UC-05 Kör lejátszása</td><td>Játékkör, Játékszabály</td><td>szekvencia- és állapotdiagram (4.2)</td></tr><tr><td>UC-06 Kör elszámolása</td><td>Játékkör, Köreredmény, Zsetonegyenleg, Játékállapot</td><td>szekvencia- és aktivitásdiagram (4.2, 4.3)</td></tr><tr><td>UC-07 Egyenleg megtekintése</td><td>Játékos, Zsetonegyenleg, Játékállapot, Felhasználói fiók</td><td>szekvenciadiagram (5.2)</td></tr><tr><td>UC-08 Korábbi eredmények *</td><td>Felhasználói fiók, Előzmény, Köreredmény</td><td>szekvenciadiagram (6.2)</td></tr><tr><td>UC-09 Játék elhagyása</td><td>Játékos, Játékállapot, Játékkör</td><td>szekvencia- és állapotdiagram (5.2)</td></tr><tr><td>UC-10 Kijelentkezés *</td><td>Felhasználói fiók</td><td>szekvenciadiagram (6.2)</td></tr></tbody></table>
+
+      <p class="small">* Feltételes (opcionális) modul.</p>
+      <h3 id="s7-3">7.3. Nyitott tervezési kérdések</h3>
+<table><thead><tr><th>Kérdés</th><th>Hatása a modellre</th><th>Állapot</th></tr></thead><tbody><tr><td>Konkrét játékok, szabályok és kifizetések (SRS NY-01)</td><td>A Játékszabály esetleges leszármazottjai, a korAdatok tartalma.</td><td>Véglegesítendő</td></tr><tr><td>Kezdőzseton és a vendégállapot megőrzése (SRS NY-02)</td><td>A Zsetonegyenleg kezdőértéke, a vendég Játékos élettartama.</td><td>Véglegesítendő</td></tr><tr><td>Fiók és előzmény modul vállalása (SRS NY-03)</td><td>A 6. fejezet osztályai bekerülnek-e a megvalósításba.</td><td>Feltételes</td></tr><tr><td>Aktív kör lejárata, visszatérés (SRS NY-04)</td><td>A Játékkör TISZTÁZANDÓ állapotának időkorlátja.</td><td>Részletezendő</td></tr></tbody></table>
+
+      <h3 id="s7-4">7.4. Kapcsolódó dokumentumok</h3>
+      <ul>
+        <li>Kaszinótojások – Vízió dokumentum (<a href="vizio.html">vizio.html</a>)</li>
+        <li>Kaszinótojások – SRS 1.4 (<a href="srs.html">srs.html</a>)</li>
+        <li>Miskolci Egyetem – <a href="https://users.iit.uni-miskolc.hu/~mileff/szt/AnalizisModell.html">Analízis modell dokumentumminta</a></li>
+      </ul>
 
     </section>
 
