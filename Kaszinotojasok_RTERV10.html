@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszinótojások – Rendszertervezés 1.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="page cover" id="cimlap">
+      <p class="meta">Csoport neve: Kaszinótojások</p>
+      <p class="meta">Feladat címe: Kaszinó applikáció tervezése</p>
+      <h1>RENDSZERTERVEZÉS</h1>
+      <p class="label">Gyakorlatvezető:</p>
+      <p class="teacher">Sátán Ádám</p>
+      <p class="label">Csoport tagok:</p>
+      <table>
+        <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
+      </table>
+      <p class="date">Verzió: 1.0<br>2026. 11. 16.</p>
+    </section>
+    <section class="page">
+      <h2 id="tortenet">Történet</h2>
+      <table>
+        <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
+        <tbody><tr><td>2026. 11. 16.</td><td>1.0</td><td>Bevezetés, architektúra és a felhasználói felület terve (1–2. fejezet).</td><td>Száraz Bálint Csaba</td></tr></tbody>
+      </table>
+      <h2 id="tartalom">Tartalomjegyzék</h2>
+      <ul class="toc">
+        <li><a href="#r1">1. Bevezetés</a></li>
+        <li style="margin-left:18px"><a href="#r1-1">1.1. A dokumentum célja</a></li>
+        <li style="margin-left:18px"><a href="#r1-2">1.2. Architektúra</a></li>
+        <li style="margin-left:18px"><a href="#r1-3">1.3. Technológiai döntések</a></li>
+        <li><a href="#r2">2. Felhasználói felület</a></li>
+        <li style="margin-left:18px"><a href="#r2-1">2.1. Általános elvek</a></li>
+        <li style="margin-left:18px"><a href="#r2-2">2.2. Képernyők és navigáció</a></li>
+        <li style="margin-left:18px"><a href="#r2-3">2.3. Kínálat (nyitóoldal)</a></li>
+        <li style="margin-left:18px"><a href="#r2-4">2.4. Játék adatlap és szabályok</a></li>
+        <li style="margin-left:18px"><a href="#r2-5">2.5. Játékfelület és eredmény</a></li>
+        <li style="margin-left:18px"><a href="#r2-6">2.6. Belépés és regisztráció</a></li>
+        <li style="margin-left:18px"><a href="#r2-7">2.7. Fiók és előzmények</a></li>
+        <li style="margin-left:18px"><a href="#r2-8">2.8. Mobil nézet</a></li>
+        <li style="margin-left:18px"><a href="#r2-9">2.9. Visszajelzések és hibaüzenetek</a></li>
+      </ul>
+    </section>
+    <section class="page">
+      <h2 id="r1">1. Bevezetés</h2>
+      <h3 id="r1-1">1.1. A dokumentum célja</h3>
+      <p>A Rendszertervezés dokumentum az Analízis modellben (Kaszinotojasok_ANAL12) leírt osztályokra és folyamatokra építve rögzíti a megvalósítás fő döntéseit: a felhasználói felület tervét, az adatbázis-kezelő kiválasztását, a szemantikai és relációs adatmodellt, az adatbázissal kapcsolatot tartó osztályokat, valamint a fő feldolgozási lépések kivételes ágait.</p>
+      <h3 id="r1-2">1.2. Architektúra</h3>
+      <p>Az SRS 8.2. pontja szerint a fiókok és a hiteles egyenlegkezelés csak szerveroldali megoldással biztonságos, ezért a rendszer háromrétegű, kliens–szerver felépítésű. A böngészőben futó kliens kizárólag a megjelenítésért és a kérések továbbításáért felel; a tét és az eredmény végső ellenőrzése, a véletlen kimenetel előállítása és az egyenleg módosítása a szerveren történik (SRS M-09).</p>
+<p style="text-align:center"><a href="abra/rterv_01_architektura.svg"><img src="abra/rterv_01_architektura.svg" alt="A rendszer architektúrája (komponensek)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>1. ábra – A rendszer architektúrája (komponensek)</em></p>
+
+      <h3 id="r1-3">1.3. Technológiai döntések</h3>
+<table><thead><tr><th>Terület</th><th>Választás</th><th>Indoklás</th></tr></thead><tbody><tr><td>Kliens</td><td>HTML5, CSS3, JavaScript (keretrendszer nélkül)</td><td>Az SRS 8.1 előírja; a csapat számára ismert, külső függőséget nem igényel.</td></tr><tr><td>Alkalmazásszerver</td><td>Node.js 22 LTS, Express</td><td>Kliens- és szerveroldalon azonos programozási nyelv; a REST API egyszerűen megvalósítható.</td></tr><tr><td>Adatbázis-kezelő</td><td>MySQL 8.0 (InnoDB)</td><td>Lásd 3.1. pont.</td></tr><tr><td>Kommunikáció</td><td>HTTPS, JSON, UTF-8</td><td>SRS 11. fejezet (interfészek).</td></tr><tr><td>Jelszótárolás</td><td>bcrypt sózott lenyomat</td><td>SRS M-08.</td></tr><tr><td>Verziókezelés</td><td>Git, GitHub</td><td>SRS 7.1.</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r2">2. Felhasználói felület</h2>
+      <h3 id="r2-1">2.1. Általános elvek</h3>
+      <ul>
+        <li><strong>Egységes keret:</strong> minden képernyő tetején ugyanaz a fejléc látható: logó, menü (Kínálat, Súgó, bejelentkezve Előzmények és Fiókom), az aktuális egyenleg és a Belépés/Kijelentkezés gomb (SRS H-02).</li>
+        <li><strong>Egységes fogalmak:</strong> a „Tét”, „Jóváírás” és „Egyenleg” feliratok minden képernyőn ugyanazt jelentik.</li>
+        <li><strong>Akadálymentesség:</strong> minden művelet billentyűzettel elérhető, a fókusz látható; a szöveg és háttér kontrasztja legalább 4,5:1; a nyerés vagy vereség szöveggel is ki van írva, nem csak színnel (SRS H-04, H-05).</li>
+        <li><strong>Reszponzivitás:</strong> a felület 1366, 768 és 360 képpont széles nézetre készül; keskeny nézetben a menü összecsukható, a panelek egymás alá kerülnek (SRS H-06).</li>
+        <li><strong>Visszajelzés:</strong> minden szerverhívásnál 200 ms-on belül „Feldolgozás…” jelzés jelenik meg, és a gomb a válaszig letiltott, így az ismételt kattintás nem indít új kérést (SRS T-04, M-03).</li>
+      </ul>
+      <p>Az alábbi képernyőtervek drótvázak: az elrendezést és a tartalmat rögzítik, a végleges színeket és képeket nem. A számozott narancssárga jelölők magyarázata az ábrák alatt található. A játékok nevei példák, a végleges lista az SRS NY-01 döntésétől függ.</p>
+      <h3 id="r2-2">2.2. Képernyők és navigáció</h3>
+<p style="text-align:center"><a href="abra/rterv_02_navigacio.svg"><img src="abra/rterv_02_navigacio.svg" alt="Képernyők és a köztük lévő navigáció" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>2. ábra – Képernyők és a köztük lévő navigáció</em></p>
+
+      <h3 id="r2-3">2.3. Kínálat (nyitóoldal)</h3>
+<p style="text-align:center"><a href="abra/rterv_03_kinalat.svg"><img src="abra/rterv_03_kinalat.svg" alt="Képernyőterv – Kínálat" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>3. ábra – Képernyőterv – Kínálat</em></p>
+<ol><li>Kategóriaszűrő: a lista kategória szerint szűkíthető.</li><li>Játékkártya: név, kategória és elérhetőség; a nem elérhető játék nem indítható, ezt felirat is jelzi (FK-01).</li><li>A „Szabályok” gomb körindítás nélkül megnyitja a játék adatlapját (FK-02).</li><li>A fejléc mindig mutatja az egyenleget; vendég játékosnál is.</li></ol>
+
+      <h3 id="r2-4">2.4. Játék adatlap és szabályok</h3>
+<p style="text-align:center"><a href="abra/rterv_04_adatlap.svg"><img src="abra/rterv_04_adatlap.svg" alt="Képernyőterv – Játék adatlap és szabályok" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>4. ábra – Képernyőterv – Játék adatlap és szabályok</em></p>
+<ol><li>A szabályleírás a célt, a műveleteket, a befejezési feltételt, a téthatárokat és a kifizetést ismerteti egy elszámolási példával (SRS 9.1).</li><li>Indítás előtt látható az egyenleg és a megengedett tét; a kör csak a „Játék indítása”, majd a tét megerősítése után indul el (SRS H-03).</li></ol>
+
+      <h3 id="r2-5">2.5. Játékfelület és eredmény</h3>
+<p style="text-align:center"><a href="abra/rterv_05_jatekfelulet.svg"><img src="abra/rterv_05_jatekfelulet.svg" alt="Képernyőterv – Játékfelület aktív körrel és eredménypanellel" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>5. ábra – Képernyőterv – Játékfelület aktív körrel és eredménypanellel</em></p>
+<ol><li>Tétmező a megengedett tartománnyal; hibás tétnél a hibaüzenet közvetlenül a mező alatt jelenik meg és megnevezi a javítás feltételét (SRS H-08). Aktív körnél a tét már nem módosítható.</li><li>Csak az aktuális állapotban megengedett műveletek gombjai aktívak (FK-06).</li><li>A kör végén megjelenik a kimenetel, a tét, a teljes jóváírás, a nettó eredmény és a végső egyenleg (FK-10); innen új kör indítható vagy másik játék választható (FK-11).</li><li>Kilépéskor aktív kör esetén figyelmeztetés jelenik meg arról, hogy a kör és a tét megmarad (FK-17).</li></ol>
+
+      <h3 id="r2-6">2.6. Belépés és regisztráció</h3>
+<p style="text-align:center"><a href="abra/rterv_06_belepes_regisztracio.svg"><img src="abra/rterv_06_belepes_regisztracio.svg" alt="Képernyőterv – Belépés és regisztráció" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>6. ábra – Képernyőterv – Belépés és regisztráció</em></p>
+<ol><li>Belépésnél hibás adatok esetén általános üzenet jelenik meg, amely nem árulja el, melyik mező volt hibás.</li><li>Regisztrációnál a hibák mezőnként jelennek meg (foglalt név, rövid jelszó, eltérő jelszóismétlés); a helyesen kitöltött mezők megmaradnak (FK-13).</li></ol>
+
+      <h3 id="r2-7">2.7. Fiók és előzmények</h3>
+<p style="text-align:center"><a href="abra/rterv_07_elozmenyek.svg"><img src="abra/rterv_07_elozmenyek.svg" alt="Képernyőterv – Előzmények" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>7. ábra – Képernyőterv – Előzmények</em></p>
+<ol><li>A táblázat a játékot, időpontot, tétet, kimenetelt, jóváírást és végső egyenleget mutatja, a legújabbal kezdve (FK-16).</li><li>Lapozás oldalanként legfeljebb 50 rekorddal (SRS T-06); az üres lista és a lekérdezési hiba eltérő üzenetet kap.</li></ol>
+
+      <p>A „Fiókom” oldal a felhasználónevet, az egyenleget és az esetleges aktív kört mutatja (FK-15); jelszó nem jelenik meg.</p>
+      <h3 id="r2-8">2.8. Mobil nézet</h3>
+      <p>360 képpont szélességben a menü egy ☰ gomb mögé kerül, az egyenleg és az aktív tét egy sávban látható, a játéktér alatt következnek a műveleti gombok (legalább 44 képpont magasak), majd a tétmező és az eredménypanel.</p>
+<p style="text-align:center"><a href="abra/rterv_08_mobil.svg"><img src="abra/rterv_08_mobil.svg" alt="Képernyőterv – Játékfelület mobil nézetben" style="max-width:100%;height:auto;background:#fff;width:380px;"></a></p>
+<p class="small" style="text-align:center"><em>8. ábra – Képernyőterv – Játékfelület mobil nézetben</em></p>
+
+      <h3 id="r2-9">2.9. Visszajelzések és hibaüzenetek</h3>
+<table><thead><tr><th>Helyzet</th><th>Üzenet</th><th>Állapotváltozás</th></tr></thead><tbody><tr><td>Tét a korláton kívül</td><td>„A tét 10 és 500 zseton között lehet, 10-es lépésekben.”</td><td>nincs</td></tr><tr><td>Nincs fedezet</td><td>„Nincs elég zsetonod: az egyenleged 80 zseton.”</td><td>nincs</td></tr><tr><td>Már van aktív kör</td><td>„Van folyamatban lévő köröd. Folytasd azt!” + gomb a körhöz</td><td>nincs</td></tr><tr><td>Tiltott lépés</td><td>„Ez a lépés most nem megengedett.”</td><td>nincs</td></tr><tr><td>Válasz nem érkezett meg</td><td>„A kör állapotát ellenőrizzük…”, majd az ismert állapot megjelenítése</td><td>a rögzített állapot jelenik meg</td></tr><tr><td>Sikeres indítás / lezárás</td><td>kezdőállapot, illetve eredménypanel</td><td>levonás / jóváírás</td></tr><tr><td>Lekérdezési hiba</td><td>„Az adatok most nem érhetők el. Próbáld újra!”</td><td>nincs, és nem jelenik meg 0 egyenleg</td></tr></tbody></table>
+
+    </section>
+
+  </main>
+</body>
+
+</html>
