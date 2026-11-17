@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszinótojások – Szótár 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="page cover" id="cimlap">
+      <p class="meta">Csoport neve: Kaszinótojások</p>
+      <p class="meta">Feladat címe: Kaszinó applikáció tervezése</p>
+      <h1>SZÓTÁR</h1>
+      <p class="label">Gyakorlatvezető:</p>
+      <p class="teacher">Sátán Ádám</p>
+      <p class="label">Csoport tagok:</p>
+      <table>
+        <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
+      </table>
+      <p class="date">Verzió: 2.0<br>2026. 11. 17.</p>
+    </section>
+    <section class="page">
+      <h2 id="tortenet">Történet</h2>
+      <table>
+        <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
+        <tbody><tr><td>2026. 10. 26.</td><td>1.0</td><td>A szótár elkészítése az SRS alapján.</td><td>Illés Levente József</td></tr><tr><td>2026. 11. 17.</td><td>2.0</td><td>Bővítés az analízis és a rendszertervezés fogalmaival; betűrendbe rendezés.</td><td>Illés Levente József</td></tr></tbody>
+      </table>
+    </section>
+    <section class="page">
+      <h2 id="szotar">Szótár</h2>
+      <p><strong>Aktivitásdiagram:</strong> UML ábra, amely egy folyamat lépéseit, döntési pontjait és elágazásait írja le.</p>
+      <p><strong>Aktív kör:</strong> Elindított, még le nem zárt játékkör; játékosonként egyszerre legfeljebb egy lehet.</p>
+      <p><strong>Aktor:</strong> A rendszerrel kapcsolatba lépő külső szereplő, például a látogató vagy a játékos.</p>
+      <p><strong>Alrendszer:</strong> Az összetartozó osztályok funkcionális csoportja (pl. Játékmenet alrendszer), amely önállóan modellezhető.</p>
+      <p><strong>Analízis modell:</strong> A rendszer objektumorientált elemzésének eredménye: osztályai, kapcsolataik, valamint statikus, dinamikus és funkcionális modellje.</p>
+      <p><strong>Asszociáció:</strong> Két osztály közötti tartós kapcsolat, amelyet multiplicitás és szerepnév pontosít.</p>
+      <p><strong>Állapotdiagram:</strong> UML ábra, amely egy objektum lehetséges állapotait és az állapotváltást kiváltó eseményeket mutatja.</p>
+      <p><strong>Csomagdiagram:</strong> UML ábra, amely az alrendszereket (csomagokat) és a köztük lévő függőségeket mutatja.</p>
+      <p><strong>CSS:</strong> A weboldalak megjelenését (színek, betűtípusok, elrendezés) leíró stílusnyelv.</p>
+      <p><strong>Drótváz:</strong> Egyszerűsített képernyőterv, amely az elrendezést és a tartalmat mutatja végleges grafika nélkül.</p>
+      <p><strong>Elsődleges kulcs:</strong> Az az oszlop vagy oszlopcsoport, amely egy tábla minden sorát egyértelműen azonosítja.</p>
+      <p><strong>Elszámolás:</strong> A játékkör végén az eredmény meghatározása, a jóváírás kiszámítása és az egyenleg frissítése.</p>
+      <p><strong>ER-diagram:</strong> Az adatbázis szemantikai modelljét egyedekkel, attribútumokkal és kapcsolatokkal ábrázoló diagram.</p>
+      <p><strong>Forráskód:</strong> Az alkalmazás működését meghatározó, programozási vagy jelölőnyelven megírt állományok összessége.</p>
+      <p><strong>GitHub:</strong> Git-alapú webes szolgáltatás a forráskód tárolására, a változtatások követésére és a közös fejlesztésre.</p>
+      <p><strong>Hitelesítés:</strong> A felhasználó személyazonosságának ellenőrzése, jellemzően a bejelentkezési adatok alapján.</p>
+      <p><strong>HTML:</strong> A weboldalak szerkezetét és tartalmát leíró jelölőnyelv.</p>
+      <p><strong>Idegen kulcs:</strong> Olyan oszlop, amely egy másik tábla elsődleges kulcsára hivatkozik.</p>
+      <p><strong>Idempotens művelet:</strong> Olyan művelet, amelynek ismételt végrehajtása nem okoz újabb állapotváltozást, például nem eredményez kétszeres jóváírást.</p>
+      <p><strong>Interfész:</strong> Kapcsolódási felület, amelyen keresztül a felhasználó vagy két szoftverkomponens kommunikál a rendszerrel.</p>
+      <p><strong>JavaScript:</strong> Programozási nyelv, amely a weboldalak interaktív működését valósítja meg; a szerveroldalon a Node.js futtatja.</p>
+      <p><strong>Játékkör:</strong> Egy elfogadott tétből induló, a játék végén egyszer elszámolt játékfolyamat.</p>
+      <p><strong>Játéklogika:</strong> A szerveroldali komponens, amely a játékszabályok alapján ellenőrzi a műveleteket és meghatározza a kör kimenetelét.</p>
+      <p><strong>Jelszólenyomat:</strong> A jelszóból sózott, egyirányú eljárással képzett érték; ebből a jelszó nem állítható vissza.</p>
+      <p><strong>JSON:</strong> Szöveges adatcsere-formátum, amely a kliens és a szerver közötti adatcserét szolgálja.</p>
+      <p><strong>Kérésazonosító:</strong> A kliens által minden indítási kéréshez generált egyedi azonosító; segítségével az ismételt kérés felismerhető.</p>
+      <p><strong>Kompozíció:</strong> Erős rész–egész kapcsolat: a rész az egész nélkül nem létezik (pl. a Köreredmény a Játékkör része).</p>
+      <p><strong>Köreredmény:</strong> A lezárt kör végleges kimenetele, teljes jóváírása és a kör utáni egyenleg.</p>
+      <p><strong>Multiplicitás:</strong> Megadja, hány objektum vehet részt egy kapcsolatban (pl. 0..1, 1, 0..*).</p>
+      <p><strong>Munkamenet:</strong> A bejelentkezett felhasználó azonosítására szolgáló, lejárati idővel rendelkező állapot.</p>
+      <p><strong>MySQL:</strong> Nyílt forráskódú relációs adatbázis-kezelő rendszer, amely az alkalmazás adatait tárolja.</p>
+      <p><strong>Nettó eredmény:</strong> A teljes jóváírás és a feltett tét különbsége, amely a kör tényleges nyereségét vagy veszteségét fejezi ki.</p>
+      <p><strong>Operáció:</strong> Az osztály által nyújtott művelet, amely a dinamikus és a funkcionális modell alapján azonosítható.</p>
+      <p><strong>Osztálydiagram:</strong> UML ábra, amely az osztályokat, attribútumaikat, operációikat és a köztük lévő kapcsolatokat mutatja.</p>
+      <p><strong>Relációs adatmodell:</strong> Az adatok táblákba (relációkba) szervezett leírása kulcsokkal és megszorításokkal.</p>
+      <p><strong>Repository:</strong> Adathozzáférési osztály, amely egy táblacsoport lekérdezéseit tartalmazza, és modellobjektumokat ad vissza.</p>
+      <p><strong>REST API:</strong> HTTP-alapú programozási felület, amelyen keresztül a kliens a szerver szolgáltatásait éri el.</p>
+      <p><strong>Reszponzív kialakítás:</strong> A különböző képernyőméretekhez alkalmazkodó weboldal-elrendezés.</p>
+      <p><strong>SRS (Software Requirements Specification):</strong> Szoftverkövetelmény-specifikáció, amely dokumentálja az alkalmazás funkcióit, működési szabályait és minőségi követelményeit.</p>
+      <p><strong>Szekvenciadiagram:</strong> UML ábra, amely egy használati eset objektumai közötti üzenetváltást időrendben ábrázolja.</p>
+      <p><strong>Teljes jóváírás:</strong> A játékkör végén a játékos egyenlegéhez hozzáadott teljes összeg.</p>
+      <p><strong>Tisztázandó állapot:</strong> A játékkör állapota megszakítás vagy bizonytalan válasz után, amíg a rendszer a rögzített adatokból vissza nem állítja.</p>
+      <p><strong>Tranzakció:</strong> Adatbázis-műveletek csoportja, amely vagy teljes egészében végrehajtódik, vagy egyáltalán nem.</p>
+      <p><strong>Verziókezelés:</strong> A forráskód módosításainak nyomon követése, a korábbi állapotok megőrzése és a fejlesztési változatok elkülönítése.</p>
+      <p><strong>Virtuális zseton:</strong> Az alkalmazáson belül használt, kizárólag játékra szolgáló egység, amely nem váltható valódi pénzre.</p>
+      <p><strong>WCAG 2.2:</strong> A webes tartalmak hozzáférhetőségére vonatkozó irányelvek gyűjteménye, amely többek között az olvashatóságra és a billentyűzetes kezelhetőségre vonatkozó követelményeket tartalmaz.</p>
+      <p><strong>Zsetonegyenleg:</strong> A játékos rendelkezésére álló virtuális zsetonok aktuális mennyisége, amely a tétek és a jóváírások alapján változik.</p>
+      <p><strong>Zsetonmozgás:</strong> Az egyenleg egy változásának (kezdőzseton, tétlevonás, jóváírás) naplózott bejegyzése.</p>
+    </section>
+
+  </main>
+</body>
+
+</html>
