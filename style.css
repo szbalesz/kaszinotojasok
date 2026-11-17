@@ -103,8 +103,8 @@ p {
 }
 
 .cover {
-  background: white;
-  color: black;
+  background: transparent;
+  color: white;
   font-family: "Times New Roman", serif;
   padding: 25px;
   line-height: normal;
@@ -138,7 +138,7 @@ p {
 }
 
 .cover td {
-  border: 1px solid black;
+  border: 1px solid #ccc;
   padding: 4px;
   font-size: 12pt;
 }
@@ -248,6 +248,11 @@ p {
 
   .cover {
     padding: 0 0 9mm;
+    color: black;
+  }
+
+  .cover td {
+    border-color: black;
   }
 
   .cover .meta {
