@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszinótojások – Rendszertervezés 1.1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="page cover" id="cimlap">
+      <p class="meta">Csoport neve: Kaszinótojások</p>
+      <p class="meta">Feladat címe: Kaszinó applikáció tervezése</p>
+      <h1>RENDSZERTERVEZÉS</h1>
+      <p class="label">Gyakorlatvezető:</p>
+      <p class="teacher">Sátán Ádám</p>
+      <p class="label">Csoport tagok:</p>
+      <table>
+        <tr><td>Varga Ákos</td><td>PGKX6G</td><td>akos.varga2@student.uni-miskolc.hu</td></tr><tr><td>Száraz Bálint Csaba</td><td>FD2PEZ</td><td>balint.csaba.szaraz@student.uni-miskolc.hu</td></tr><tr><td>Csanálosi Bálint</td><td>HKYTMD</td><td>balint.csanalosi@student.uni-miskolc.hu</td></tr><tr><td>Illés Levente József</td><td>H35OCO</td><td>levente.jozsef.illes@student.uni-miskolc.hu</td></tr><tr><td>Bari Szabolcs</td><td>VR9Z3P</td><td>szabolcs.bari@student.uni-miskolc.hu</td></tr>
+      </table>
+      <p class="date">Verzió: 1.1<br>2026. 11. 17.</p>
+    </section>
+    <section class="page">
+      <h2 id="tortenet">Történet</h2>
+      <table>
+        <thead><tr><th>Dátum</th><th>Verzió</th><th>Leírás</th><th>Szerző</th></tr></thead>
+        <tbody><tr><td>2026. 11. 16.</td><td>1.0</td><td>Bevezetés, architektúra és a felhasználói felület terve (1–2. fejezet).</td><td>Száraz Bálint Csaba</td></tr><tr><td>2026. 11. 17.</td><td>1.1</td><td>Adatmodellek (adatbázis-kezelő, ER- és relációs modell, adatbázis-osztályok), a funkcionális modell kiegészítése, interfész és mentés (3–6. fejezet).</td><td>Csanálosi Bálint</td></tr></tbody>
+      </table>
+      <h2 id="tartalom">Tartalomjegyzék</h2>
+      <ul class="toc">
+        <li><a href="#r1">1. Bevezetés</a></li>
+        <li style="margin-left:18px"><a href="#r1-1">1.1. A dokumentum célja</a></li>
+        <li style="margin-left:18px"><a href="#r1-2">1.2. Architektúra</a></li>
+        <li style="margin-left:18px"><a href="#r1-3">1.3. Technológiai döntések</a></li>
+        <li><a href="#r2">2. Felhasználói felület</a></li>
+        <li style="margin-left:18px"><a href="#r2-1">2.1. Általános elvek</a></li>
+        <li style="margin-left:18px"><a href="#r2-2">2.2. Képernyők és navigáció</a></li>
+        <li style="margin-left:18px"><a href="#r2-3">2.3. Kínálat (nyitóoldal)</a></li>
+        <li style="margin-left:18px"><a href="#r2-4">2.4. Játék adatlap és szabályok</a></li>
+        <li style="margin-left:18px"><a href="#r2-5">2.5. Játékfelület és eredmény</a></li>
+        <li style="margin-left:18px"><a href="#r2-6">2.6. Belépés és regisztráció</a></li>
+        <li style="margin-left:18px"><a href="#r2-7">2.7. Fiók és előzmények</a></li>
+        <li style="margin-left:18px"><a href="#r2-8">2.8. Mobil nézet</a></li>
+        <li style="margin-left:18px"><a href="#r2-9">2.9. Visszajelzések és hibaüzenetek</a></li>
+        <li><a href="#r3">3. Adatmodellek</a></li>
+        <li style="margin-left:18px"><a href="#r3-1">3.1. Adatbázis-kezelő kiválasztása</a></li>
+        <li style="margin-left:18px"><a href="#r3-2">3.2. Szemantikai adatmodell</a></li>
+        <li style="margin-left:18px"><a href="#r3-3">3.3 Relációs adatmodell</a></li>
+        <li style="margin-left:18px"><a href="#r3-4">3.4. Az adatbázis-kezelővel kapcsolatot tartó osztályok</a></li>
+        <li><a href="#r4">4. A funkcionális modell kiegészítése</a></li>
+        <li style="margin-left:18px"><a href="#r4-1">4.1. Körindítás egy tranzakcióban</a></li>
+        <li style="margin-left:18px"><a href="#r4-2">4.2. Kivételes és alternatív folyamatok</a></li>
+        <li style="margin-left:18px"><a href="#r4-3">4.3. Adatáramlások</a></li>
+        <li><a href="#r5">5. Kliens–szerver interfész</a></li>
+        <li><a href="#r6">6. Mentés, visszaállítás és telepítés</a></li>
+      </ul>
+    </section>
+    <section class="page">
+      <h2 id="r1">1. Bevezetés</h2>
+      <h3 id="r1-1">1.1. A dokumentum célja</h3>
+      <p>A Rendszertervezés dokumentum az Analízis modellben (Kaszinotojasok_ANAL12) leírt osztályokra és folyamatokra építve rögzíti a megvalósítás fő döntéseit: a felhasználói felület tervét, az adatbázis-kezelő kiválasztását, a szemantikai és relációs adatmodellt, az adatbázissal kapcsolatot tartó osztályokat, valamint a fő feldolgozási lépések kivételes ágait.</p>
+      <h3 id="r1-2">1.2. Architektúra</h3>
+      <p>Az SRS 8.2. pontja szerint a fiókok és a hiteles egyenlegkezelés csak szerveroldali megoldással biztonságos, ezért a rendszer háromrétegű, kliens–szerver felépítésű. A böngészőben futó kliens kizárólag a megjelenítésért és a kérések továbbításáért felel; a tét és az eredmény végső ellenőrzése, a véletlen kimenetel előállítása és az egyenleg módosítása a szerveren történik (SRS M-09).</p>
+<p style="text-align:center"><a href="abra/rterv_01_architektura.svg"><img src="abra/rterv_01_architektura.svg" alt="A rendszer architektúrája (komponensek)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>1. ábra – A rendszer architektúrája (komponensek)</em></p>
+
+      <h3 id="r1-3">1.3. Technológiai döntések</h3>
+<table><thead><tr><th>Terület</th><th>Választás</th><th>Indoklás</th></tr></thead><tbody><tr><td>Kliens</td><td>HTML5, CSS3, JavaScript (keretrendszer nélkül)</td><td>Az SRS 8.1 előírja; a csapat számára ismert, külső függőséget nem igényel.</td></tr><tr><td>Alkalmazásszerver</td><td>Node.js 22 LTS, Express</td><td>Kliens- és szerveroldalon azonos programozási nyelv; a REST API egyszerűen megvalósítható.</td></tr><tr><td>Adatbázis-kezelő</td><td>MySQL 8.0 (InnoDB)</td><td>Lásd 3.1. pont.</td></tr><tr><td>Kommunikáció</td><td>HTTPS, JSON, UTF-8</td><td>SRS 11. fejezet (interfészek).</td></tr><tr><td>Jelszótárolás</td><td>bcrypt sózott lenyomat</td><td>SRS M-08.</td></tr><tr><td>Verziókezelés</td><td>Git, GitHub</td><td>SRS 7.1.</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r2">2. Felhasználói felület</h2>
+      <h3 id="r2-1">2.1. Általános elvek</h3>
+      <ul>
+        <li><strong>Egységes keret:</strong> minden képernyő tetején ugyanaz a fejléc látható: logó, menü (Kínálat, Súgó, bejelentkezve Előzmények és Fiókom), az aktuális egyenleg és a Belépés/Kijelentkezés gomb (SRS H-02).</li>
+        <li><strong>Egységes fogalmak:</strong> a „Tét”, „Jóváírás” és „Egyenleg” feliratok minden képernyőn ugyanazt jelentik.</li>
+        <li><strong>Akadálymentesség:</strong> minden művelet billentyűzettel elérhető, a fókusz látható; a szöveg és háttér kontrasztja legalább 4,5:1; a nyerés vagy vereség szöveggel is ki van írva, nem csak színnel (SRS H-04, H-05).</li>
+        <li><strong>Reszponzivitás:</strong> a felület 1366, 768 és 360 képpont széles nézetre készül; keskeny nézetben a menü összecsukható, a panelek egymás alá kerülnek (SRS H-06).</li>
+        <li><strong>Visszajelzés:</strong> minden szerverhívásnál 200 ms-on belül „Feldolgozás…” jelzés jelenik meg, és a gomb a válaszig letiltott, így az ismételt kattintás nem indít új kérést (SRS T-04, M-03).</li>
+      </ul>
+      <p>Az alábbi képernyőtervek drótvázak: az elrendezést és a tartalmat rögzítik, a végleges színeket és képeket nem. A számozott narancssárga jelölők magyarázata az ábrák alatt található. A játékok nevei példák, a végleges lista az SRS NY-01 döntésétől függ.</p>
+      <h3 id="r2-2">2.2. Képernyők és navigáció</h3>
+<p style="text-align:center"><a href="abra/rterv_02_navigacio.svg"><img src="abra/rterv_02_navigacio.svg" alt="Képernyők és a köztük lévő navigáció" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>2. ábra – Képernyők és a köztük lévő navigáció</em></p>
+
+      <h3 id="r2-3">2.3. Kínálat (nyitóoldal)</h3>
+<p style="text-align:center"><a href="abra/rterv_03_kinalat.svg"><img src="abra/rterv_03_kinalat.svg" alt="Képernyőterv – Kínálat" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>3. ábra – Képernyőterv – Kínálat</em></p>
+<ol><li>Kategóriaszűrő: a lista kategória szerint szűkíthető.</li><li>Játékkártya: név, kategória és elérhetőség; a nem elérhető játék nem indítható, ezt felirat is jelzi (FK-01).</li><li>A „Szabályok” gomb körindítás nélkül megnyitja a játék adatlapját (FK-02).</li><li>A fejléc mindig mutatja az egyenleget; vendég játékosnál is.</li></ol>
+
+      <h3 id="r2-4">2.4. Játék adatlap és szabályok</h3>
+<p style="text-align:center"><a href="abra/rterv_04_adatlap.svg"><img src="abra/rterv_04_adatlap.svg" alt="Képernyőterv – Játék adatlap és szabályok" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>4. ábra – Képernyőterv – Játék adatlap és szabályok</em></p>
+<ol><li>A szabályleírás a célt, a műveleteket, a befejezési feltételt, a téthatárokat és a kifizetést ismerteti egy elszámolási példával (SRS 9.1).</li><li>Indítás előtt látható az egyenleg és a megengedett tét; a kör csak a „Játék indítása”, majd a tét megerősítése után indul el (SRS H-03).</li></ol>
+
+      <h3 id="r2-5">2.5. Játékfelület és eredmény</h3>
+<p style="text-align:center"><a href="abra/rterv_05_jatekfelulet.svg"><img src="abra/rterv_05_jatekfelulet.svg" alt="Képernyőterv – Játékfelület aktív körrel és eredménypanellel" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>5. ábra – Képernyőterv – Játékfelület aktív körrel és eredménypanellel</em></p>
+<ol><li>Tétmező a megengedett tartománnyal; hibás tétnél a hibaüzenet közvetlenül a mező alatt jelenik meg és megnevezi a javítás feltételét (SRS H-08). Aktív körnél a tét már nem módosítható.</li><li>Csak az aktuális állapotban megengedett műveletek gombjai aktívak (FK-06).</li><li>A kör végén megjelenik a kimenetel, a tét, a teljes jóváírás, a nettó eredmény és a végső egyenleg (FK-10); innen új kör indítható vagy másik játék választható (FK-11).</li><li>Kilépéskor aktív kör esetén figyelmeztetés jelenik meg arról, hogy a kör és a tét megmarad (FK-17).</li></ol>
+
+      <h3 id="r2-6">2.6. Belépés és regisztráció</h3>
+<p style="text-align:center"><a href="abra/rterv_06_belepes_regisztracio.svg"><img src="abra/rterv_06_belepes_regisztracio.svg" alt="Képernyőterv – Belépés és regisztráció" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>6. ábra – Képernyőterv – Belépés és regisztráció</em></p>
+<ol><li>Belépésnél hibás adatok esetén általános üzenet jelenik meg, amely nem árulja el, melyik mező volt hibás.</li><li>Regisztrációnál a hibák mezőnként jelennek meg (foglalt név, rövid jelszó, eltérő jelszóismétlés); a helyesen kitöltött mezők megmaradnak (FK-13).</li></ol>
+
+      <h3 id="r2-7">2.7. Fiók és előzmények</h3>
+<p style="text-align:center"><a href="abra/rterv_07_elozmenyek.svg"><img src="abra/rterv_07_elozmenyek.svg" alt="Képernyőterv – Előzmények" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>7. ábra – Képernyőterv – Előzmények</em></p>
+<ol><li>A táblázat a játékot, időpontot, tétet, kimenetelt, jóváírást és végső egyenleget mutatja, a legújabbal kezdve (FK-16).</li><li>Lapozás oldalanként legfeljebb 50 rekorddal (SRS T-06); az üres lista és a lekérdezési hiba eltérő üzenetet kap.</li></ol>
+
+      <p>A „Fiókom” oldal a felhasználónevet, az egyenleget és az esetleges aktív kört mutatja (FK-15); jelszó nem jelenik meg.</p>
+      <h3 id="r2-8">2.8. Mobil nézet</h3>
+      <p>360 képpont szélességben a menü egy ☰ gomb mögé kerül, az egyenleg és az aktív tét egy sávban látható, a játéktér alatt következnek a műveleti gombok (legalább 44 képpont magasak), majd a tétmező és az eredménypanel.</p>
+<p style="text-align:center"><a href="abra/rterv_08_mobil.svg"><img src="abra/rterv_08_mobil.svg" alt="Képernyőterv – Játékfelület mobil nézetben" style="max-width:100%;height:auto;background:#fff;width:380px;"></a></p>
+<p class="small" style="text-align:center"><em>8. ábra – Képernyőterv – Játékfelület mobil nézetben</em></p>
+
+      <h3 id="r2-9">2.9. Visszajelzések és hibaüzenetek</h3>
+<table><thead><tr><th>Helyzet</th><th>Üzenet</th><th>Állapotváltozás</th></tr></thead><tbody><tr><td>Tét a korláton kívül</td><td>„A tét 10 és 500 zseton között lehet, 10-es lépésekben.”</td><td>nincs</td></tr><tr><td>Nincs fedezet</td><td>„Nincs elég zsetonod: az egyenleged 80 zseton.”</td><td>nincs</td></tr><tr><td>Már van aktív kör</td><td>„Van folyamatban lévő köröd. Folytasd azt!” + gomb a körhöz</td><td>nincs</td></tr><tr><td>Tiltott lépés</td><td>„Ez a lépés most nem megengedett.”</td><td>nincs</td></tr><tr><td>Válasz nem érkezett meg</td><td>„A kör állapotát ellenőrizzük…”, majd az ismert állapot megjelenítése</td><td>a rögzített állapot jelenik meg</td></tr><tr><td>Sikeres indítás / lezárás</td><td>kezdőállapot, illetve eredménypanel</td><td>levonás / jóváírás</td></tr><tr><td>Lekérdezési hiba</td><td>„Az adatok most nem érhetők el. Próbáld újra!”</td><td>nincs, és nem jelenik meg 0 egyenleg</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r3">3. Adatmodellek</h2>
+      <h3 id="r3-1">3.1. Adatbázis-kezelő kiválasztása</h3>
+      <p>Az adatok tárolására a <strong>MySQL 8.0</strong> relációs adatbázis-kezelő szolgál, InnoDB tárolómotorral. A döntés indokai:</p>
+      <ul>
+        <li>Az egyenlegkezelés megköveteli, hogy a kör létrehozása és a tét levonása, illetve a lezárás és a jóváírás együtt érvényesüljön (SRS M-02). Az InnoDB ACID-tranzakciókat és sorzárolást (<em>SELECT … FOR UPDATE</em>) biztosít.</li>
+        <li>Az egyedi indexekkel adatbázisszinten kizárható a kettős indítás, a kettős levonás és a kettős jóváírás (SRS M-03).</li>
+        <li>Ingyenesen használható, a csapat az Adatbázis-kezelés tárgy keretében megismerte, a mentés és a visszaállítás pedig a <em>mysqldump</em> eszközzel megoldható (SRS 7.3).</li>
+        <li>A <em>JSON</em> oszloptípus alkalmas a játékonként eltérő köradatok tárolására.</li>
+      </ul>
+      <p>Az alkalmazás a <em>mysql2</em> Node.js meghajtóval, kapcsolatkészleten (connection pool) keresztül kapcsolódik az adatbázishoz. Az SQL utasításokat kizárólag az adathozzáférési réteg (3.4. pont) tartalmazza, paraméterezett lekérdezésekkel; így az adatbázis-kezelő cseréje csak ezt a réteget érintené.</p>
+      <h3 id="r3-2">3.2. Szemantikai adatmodell</h3>
+      <p>A szemantikai modell Chen-féle ER-diagrammal készült. Az egyedek az Analízis modell perzisztens osztályaiból származnak; a Köreredmény gyenge egyed, mert csak a hozzá tartozó Játékkörrel együtt azonosítható. Két új egyed jelent meg a tervezés során: a <strong>Munkamenet</strong> a bejelentkezések kezelésére, a <strong>Zsetonmozgás</strong> pedig az egyenlegváltozások naplózására és a kettős könyvelés kizárására.</p>
+<p style="text-align:center"><a href="abra/rterv_09_er_diagram.svg"><img src="abra/rterv_09_er_diagram.svg" alt="A rendszer ER-diagramja (szemantikai adatmodell)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>9. ábra – A rendszer ER-diagramja (szemantikai adatmodell)</em></p>
+<table><thead><tr><th>Kapcsolat</th><th>Típus</th><th>Jelentés</th></tr></thead><tbody><tr><td>Játék – rendelkezik – Játékszabály</td><td>1 : N</td><td>Egy játéknak több szabályverziója lehet.</td></tr><tr><td>Játékszabály – szerint – Játékkör</td><td>1 : N</td><td>A kör az indításkor érvényes verzió szerint számol.</td></tr><tr><td>Játékos – indít – Játékkör</td><td>1 : N</td><td>Egy játékosnak több köre lehet, ebből legfeljebb egy aktív.</td></tr><tr><td>Játékkör – lezárás – Köreredmény</td><td>1 : 1 (gyenge)</td><td>Lezárt körhöz pontosan egy eredmény tartozik.</td></tr><tr><td>Játékos – azonosít – Felhasználói fiók</td><td>1 : 1 (opcionális)</td><td>Vendég játékosnak nincs fiókja.</td></tr><tr><td>Felhasználói fiók – belépés – Munkamenet</td><td>1 : N</td><td>Egy fiókhoz több eszközről is tartozhat munkamenet.</td></tr><tr><td>Játékos – könyvel – Zsetonmozgás</td><td>1 : N</td><td>Kezdőzseton, tétlevonások és jóváírások.</td></tr><tr><td>Játékkör – okoz – Zsetonmozgás</td><td>1 : N (legfeljebb 2)</td><td>Körönként egy TET és egy JOVAIRAS mozgás.</td></tr></tbody></table>
+
+      <h3 id="r3-3">3.3 Relációs adatmodell</h3>
+      <p><strong>Az átalakítás szabályai.</strong> Minden egyed külön táblába kerül, az egyedi azonosítók elsődleges kulcsok (mesterséges, automatikusan növekvő egész). Az 1:N kapcsolatok az N oldali táblában idegen kulccsal jelennek meg. Az 1:1 Játékos–Felhasználói fiók kapcsolat a fiók táblában egyedi idegen kulccsal valósul meg. A gyenge Köreredmény egyed elsődleges kulcsa egyben a Játékkörre mutató idegen kulcs. Az Analízis modell Zsetonegyenleg osztálya 1:1 viszonyban áll a Játékossal, ezért külön tábla helyett a <em>jatekos.elerheto_zseton</em> oszlop tárolja. A Játékállapot adatait a <em>jatekos.utolso_keres_azonosito</em> és a <em>jatekkor.aktiv_jatekos_id</em> oszlopok tárolják. Az Előzmény nem tábla, hanem a lezárt körökre vonatkozó lekérdezés (<em>elozmeny_nezet</em> nézet).</p>
+<p style="text-align:center"><a href="abra/rterv_10_relacios_modell.svg"><img src="abra/rterv_10_relacios_modell.svg" alt="A relációs adatmodell (táblák, kulcsok, idegen kulcsok)" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>10. ábra – A relációs adatmodell (táblák, kulcsok, idegen kulcsok)</em></p>
+
+      <p><strong>A relációs sémák</strong> (aláhúzva az elsődleges kulcs, dőlt betűvel az idegen kulcs):</p>
+      <ul>
+        <li>jatek(<u>jatek_id</u>, nev, kategoria, elerheto)</li>
+        <li>jatekszabaly(<u>szabaly_id</u>, <em>jatek_id</em>, verzio, minimum_tet, maximum_tet, tet_lepcso, kifizetesi_leiras, ervenyes_tol)</li>
+        <li>jatekos(<u>jatekos_id</u>, vendeg_token, elerheto_zseton, utolso_keres_azonosito, letrehozva)</li>
+        <li>felhasznaloi_fiok(<u>fiok_id</u>, <em>jatekos_id</em>, felhasznalonev, jelszo_lenyomat, letrehozva)</li>
+        <li>munkamenet(<u>token_lenyomat</u>, <em>fiok_id</em>, letrehozva, lejar)</li>
+        <li>jatekkor(<u>kor_id</u>, <em>jatekos_id</em>, <em>szabaly_id</em>, tet, allapot, inditasi_keres_azonosito, kor_adatok, aktiv_jatekos_id, inditva)</li>
+        <li>koreredmeny(<u><em>kor_id</em></u>, kimenetel, teljes_jovairas, vegso_egyenleg, lezarva)</li>
+        <li>zsetonmozgas(<u>mozgas_id</u>, <em>jatekos_id</em>, <em>kor_id</em>, tipus, osszeg, idopont)</li>
+      </ul>
+      <p><strong>Integritási megszorítások</strong>, amelyek az SRS megbízhatósági követelményeit adatbázisszinten biztosítják:</p>
+<table><thead><tr><th>Megszorítás</th><th>Tábla</th><th>Követelmény</th></tr></thead><tbody><tr><td>CHECK (elerheto_zseton &gt;= 0)</td><td>jatekos</td><td>FK-09: az egyenleg nem lehet negatív</td></tr><tr><td>UNIQUE (aktiv_jatekos_id) – értéke a játékos azonosítója, amíg a kör AKTIV vagy TISZTAZANDO, lezáráskor NULL</td><td>jatekkor</td><td>FK-05: egyszerre legfeljebb egy aktív kör</td></tr><tr><td>UNIQUE (inditasi_keres_azonosito)</td><td>jatekkor</td><td>FK-12, M-03: ismételt indítás nem hoz létre új kört</td></tr><tr><td>UNIQUE (kor_id, tipus)</td><td>zsetonmozgas</td><td>FK-08, M-03: körönként egy levonás és egy jóváírás</td></tr><tr><td>PRIMARY KEY (kor_id)</td><td>koreredmeny</td><td>FK-08: körönként egy végleges eredmény</td></tr><tr><td>UNIQUE (felhasznalonev), UNIQUE (jatekos_id)</td><td>felhasznaloi_fiok</td><td>FK-13: egyedi név; játékosonként egy fiók</td></tr><tr><td>UNIQUE (jatek_id, verzio)</td><td>jatekszabaly</td><td>SRS 8.3: a szabályverzió egyértelmű</td></tr><tr><td>CHECK (tet &gt; 0), CHECK (minimum_tet &lt;= maximum_tet)</td><td>jatekkor, jatekszabaly</td><td>FK-04</td></tr></tbody></table>
+
+      <p>A táblák harmadik normálformában vannak: minden nem kulcs attribútum csak a teljes elsődleges kulcstól függ. A <em>koreredmeny.vegso_egyenleg</em> tudatos, kontrollált redundancia: a lezáráskori egyenleget rögzíti az előzmények számára, mert a játékos egyenlege később változik.</p>
+      <h3 id="r3-4">3.4. Az adatbázis-kezelővel kapcsolatot tartó osztályok</h3>
+      <p>Az adathozzáférés a <em>Repository</em> tervezési mintát követi: minden táblacsoporthoz egy osztály tartozik, amely az SQL utasításokat tartalmazza, és az Analízis modell osztályainak megfelelő objektumokat ad vissza. A Repository osztályok a közös <strong>AdatbazisKapcsolat</strong> osztályon keresztül érik el az adatbázist; a több táblát érintő műveleteket a szolgáltatásosztályok (KorSzolgaltatas, FiokSzolgaltatas) a <em>tranzakcio()</em> metódussal egy tranzakcióba fogják.</p>
+<p style="text-align:center"><a href="abra/rterv_11_db_osztalyok.svg"><img src="abra/rterv_11_db_osztalyok.svg" alt="Az adatbázissal kapcsolatot tartó osztályok" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>11. ábra – Az adatbázissal kapcsolatot tartó osztályok</em></p>
+<table><thead><tr><th>Osztály</th><th>Táblák</th><th>Feladat</th></tr></thead><tbody><tr><td>AdatbazisKapcsolat</td><td>–</td><td>Kapcsolatkészlet kezelése; paraméterezett lekérdezés; <em>tranzakcio(muvelet)</em>: START TRANSACTION, hiba esetén ROLLBACK, siker esetén COMMIT.</td></tr><tr><td>JatekRepository</td><td>jatek, jatekszabaly</td><td>Kínálat, egy játék és az érvényes vagy megadott szabályverzió betöltése (Játék, Játékszabály objektumok).</td></tr><tr><td>JatekosRepository</td><td>jatekos</td><td>Játékos létrehozása kezdőzsetonnal, betöltése (zárolással is), egyenleg módosítása, kérésazonosító rögzítése (Játékos, Zsetonegyenleg, Játékállapot).</td></tr><tr><td>JatekkorRepository</td><td>jatekkor, koreredmeny</td><td>Kör létrehozása, keresése kérésazonosító vagy aktív állapot alapján, állapotváltás, lezárás eredménnyel (Játékkör, Köreredmény).</td></tr><tr><td>ZsetonmozgasRepository</td><td>zsetonmozgas</td><td>Mozgás rögzítése; egyedi kulcs ütközésekor hamisat ad (a művelet már megtörtént).</td></tr><tr><td>FiokRepository</td><td>felhasznaloi_fiok</td><td>Fiók létrehozása, keresése felhasználónév alapján (Felhasználói fiók).</td></tr><tr><td>MunkamenetRepository</td><td>munkamenet</td><td>Munkamenet létrehozása, ellenőrzése és törlése; a tokennek csak a lenyomatát tárolja.</td></tr><tr><td>ElozmenyRepository</td><td>elozmeny_nezet</td><td>Saját lezárt körök lapozott lekérdezése, legfeljebb 50 sor (Előzmény).</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r4">4. A funkcionális modell kiegészítése</h2>
+      <h3 id="r4-1">4.1. Körindítás egy tranzakcióban</h3>
+      <p>Az Analízis modell UC-04 folyamatát a szerveren egyetlen adatbázis-tranzakció valósítja meg. A játékos sorának zárolása miatt két párhuzamos kérés (például két böngészőlap) nem költheti el kétszer ugyanazt az egyenleget; az egyedi indexek pedig az ismételt kattintásból vagy újraküldésből eredő ismételt kéréseket szűrik ki.</p>
+<p style="text-align:center"><a href="abra/rterv_12_szekv_korinditas_tranzakcio.svg"><img src="abra/rterv_12_szekv_korinditas_tranzakcio.svg" alt="Szekvenciadiagram – körindítás a szerveren, tranzakcióban" style="max-width:100%;height:auto;background:#fff;"></a></p>
+<p class="small" style="text-align:center"><em>12. ábra – Szekvenciadiagram – körindítás a szerveren, tranzakcióban</em></p>
+
+      <p>A kör lezárása ugyanígy egy tranzakció: a <em>koreredmeny</em> sor beszúrása, a JOVAIRAS zsetonmozgás, az egyenleg növelése, a kör LEZART állapotba állítása és az <em>aktiv_jatekos_id</em> törlése együtt érvényesül.</p>
+      <h3 id="r4-2">4.2. Kivételes és alternatív folyamatok</h3>
+<table><thead><tr><th>Helyzet</th><th>Kezelés</th><th>SRS</th></tr></thead><tbody><tr><td>Ismételt kattintás vagy újraküldött indítás</td><td>A kliens minden indításhoz új kérésazonosítót (UUID) generál, újraküldéskor ugyanazt küldi. A szerver a meglévő kört adja vissza, új levonás nélkül.</td><td>FK-12, M-03</td></tr><tr><td>Az indítás válasza elveszett</td><td>A kliens a kérésazonosítóval lekérdezi az állapotot (GET /api/allapot); ha a kör létrejött, azt jeleníti meg, egyébként újra indíthat.</td><td>UC-04 kivétel</td></tr><tr><td>Hiba a lezárás közben</td><td>A tranzakció visszagörgetődik, a kör AKTIV marad; a következő lezárási kérés a rögzített köradatokból számol, új véletlen eredmény nélkül.</td><td>M-02, M-04</td></tr><tr><td>Ismételt lezárási kérés</td><td>A koreredmeny tábla már tartalmazza a sort: a szerver ugyanazt az eredményt adja vissza.</td><td>FK-08</td></tr><tr><td>Két böngészőlapon egyszerre indított kör</td><td>Az aktiv_jatekos_id egyedi indexe miatt a második beszúrás sikertelen → ROLLBACK, 409 válasz.</td><td>FK-05</td></tr><tr><td>Lejárt munkamenet</td><td>401 válasz; a felület a belépésre irányít, a kör és az egyenleg megmarad.</td><td>FK-14</td></tr><tr><td>Más játékos adatának kérése</td><td>A szerver minden kérésnél a munkamenetből azonosítja a játékost; URL-ben kapott azonosítót nem fogad el.</td><td>M-07</td></tr></tbody></table>
+
+      <h3 id="r4-3">4.3. Adatáramlások</h3>
+      <p>A kliens a szerverre csak a játékos szándékát küldi (játékazonosító, tét, választott művelet, kérésazonosító). A szerver olvassa az érvényes szabályt és a zárolt egyenleget, kiszámítja a kimenetelt, és visszaküldi a körállapotot, illetve a lezáráskor az eredményt és az új egyenleget. A kliens által küldött egyenleget vagy jóváírást a szerver soha nem fogadja el (SRS M-09).</p>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r5">5. Kliens–szerver interfész</h2>
+      <p>A kliens és a szerver JSON formátumú REST hívásokkal kommunikál HTTPS felett. A bejelentkezett felhasználót HttpOnly sütiben tárolt munkamenet-token, a vendég játékost a vendégtoken azonosítja.</p>
+<table><thead><tr><th>Végpont</th><th>Leírás</th><th>Fő válaszkódok</th><th>Use case</th></tr></thead><tbody><tr><td>GET /api/jatekok</td><td>Kínálat (szűrhető kategóriára)</td><td>200</td><td>UC-01</td></tr><tr><td>GET /api/jatekok/{id}</td><td>Adatlap és érvényes szabály</td><td>200, 404</td><td>UC-01</td></tr><tr><td>GET /api/allapot</td><td>Egyenleg, aktív kör, (felhasználónév)</td><td>200</td><td>UC-07, UC-09</td></tr><tr><td>POST /api/korok</td><td>Kör indítása {jatekId, tet, keresAz}</td><td>201, 200 (ismételt), 409, 422</td><td>UC-04</td></tr><tr><td>POST /api/korok/{id}/lepes</td><td>Lépés {muvelet}</td><td>200, 409, 422</td><td>UC-05</td></tr><tr><td>POST /api/korok/{id}/lezaras</td><td>Elszámolás, eredmény</td><td>200</td><td>UC-06</td></tr><tr><td>POST /api/fiok/regisztracio</td><td>Regisztráció</td><td>201, 409, 422</td><td>UC-02</td></tr><tr><td>POST /api/fiok/belepes</td><td>Belépés</td><td>200, 401</td><td>UC-03</td></tr><tr><td>POST /api/fiok/kijelentkezes</td><td>Kijelentkezés</td><td>204</td><td>UC-10</td></tr><tr><td>GET /api/fiok/elozmenyek?oldal=n</td><td>Saját lezárt körök, legfeljebb 50</td><td>200, 401</td><td>UC-08</td></tr></tbody></table>
+
+    </section>
+
+    <section class="page">
+      <h2 id="r6">6. Mentés, visszaállítás és telepítés</h2>
+      <p>Az adatbázisról naponta, valamint minden bemutató előtt teljes mentés készül <em>mysqldump --single-transaction</em> paranccsal. A visszaállítást a csapat a bemutató előtt legalább egyszer tesztadatbázison ellenőrzi (SRS 7.3, M-06). Visszaállítás után a felület jelzi, hogy az adatok a mentés időpontjának állapotát tükrözik.</p>
+      <p>A forráskód README fájlja tartalmazza a szükséges verziókat (Node.js 22, MySQL 8.0), a táblák létrehozó szkriptjének futtatását, a kezdő játékadatok betöltését, a konfigurációs változókat (adatbázis elérése, munkamenet-titok) és a tesztek futtatását. A jelszavak és titkok nem kerülnek a Git-tárolóba.</p>
+
+    </section>
+
+  </main>
+</body>
+
+</html>

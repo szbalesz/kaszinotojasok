@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1550" height="888" viewBox="0 0 1550 888" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="26" y="458" width="1498.5" height="288" fill="none" stroke="#5b6b8c" stroke-width="1"/>
+<path d="M26,458 h28.0 v12 l-7,7 h-21.0 z" fill="#e6ebf5" stroke="#5b6b8c"/>
+<text x="31" y="472" font-size="11" font-weight="bold">alt</text>
+<text x="62.0" y="472" font-size="11" font-style="italic">[érvénytelen tét / nincs fedezet]</text>
+<line x1="26" y1="554" x2="1524.5" y2="554" stroke="#5b6b8c" stroke-dasharray="5,4"/>
+<text x="34" y="569" font-size="11" font-style="italic">[rendben]</text>
+<rect x="18" y="226" width="1514.5" height="530" fill="none" stroke="#5b6b8c" stroke-width="1"/>
+<path d="M18,226 h28.0 v12 l-7,7 h-21.0 z" fill="#e6ebf5" stroke="#5b6b8c"/>
+<text x="23" y="240" font-size="11" font-weight="bold">alt</text>
+<text x="54.0" y="240" font-size="11" font-style="italic">[már létezik kör ezzel a keresAz-zal]</text>
+<line x1="18" y1="288" x2="1532.5" y2="288" stroke="#5b6b8c" stroke-dasharray="5,4"/>
+<text x="26" y="303" font-size="11" font-style="italic">[új kérés]</text>
+<circle cx="105.0" cy="27" r="7" fill="white" stroke="#2f3b52" stroke-width="1.3"/>
+<path d="M105.0,34 v14 M94.0,39 h22 M105.0,48 l-9,11 M105.0,48 l9,11" fill="none" stroke="#2f3b52" stroke-width="1.3"/>
+<text x="105.0" y="74" font-size="12" text-anchor="middle" font-weight="bold">Kliens</text>
+<line x1="105.0" y1="80" x2="105.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="349.0" y="28" width="90" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="394.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:REST API</text>
+<line x1="394.0" y1="58" x2="394.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="572.5" y="28" width="119.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="632.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:KorSzolgaltatas</text>
+<line x1="632.0" y1="58" x2="632.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="803.5" y="28" width="143.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="875.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:AdatbazisKapcsolat</text>
+<line x1="875.0" y1="58" x2="875.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="976.5" y="28" width="142.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="1047.5" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:JatekkorRepository</text>
+<line x1="1047.5" y1="58" x2="1047.5" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="1148.5" y="28" width="137.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="1217.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:JatekosRepository</text>
+<line x1="1217.0" y1="58" x2="1217.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<rect x="1315.5" y="28" width="175.0" height="30" fill="#f4f7fc" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="1403.0" y="47" font-size="12" text-anchor="middle" font-weight="bold" text-decoration="underline">:ZsetonmozgasRepository</text>
+<line x1="1403.0" y1="58" x2="1403.0" y2="874" stroke="#8a96ad" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="105.0" y1="96" x2="394.0" y2="96" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M384.0,91 L394.0,96 L384.0,101 z" fill="#2f3b52"/>
+<text x="249.5" y="90" font-size="12" text-anchor="middle">POST /api/korok {jatekId, tet, keresAz}</text>
+<line x1="394.0" y1="130" x2="632.0" y2="130" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M622.0,125 L632.0,130 L622.0,135 z" fill="#2f3b52"/>
+<text x="513.0" y="124" font-size="12" text-anchor="middle">korIndit(jatekosId, jatekId, tet, keresAz)</text>
+<line x1="632.0" y1="164" x2="1047.5" y2="164" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1037.5,159 L1047.5,164 L1037.5,169 z" fill="#2f3b52"/>
+<text x="839.75" y="158" font-size="12" text-anchor="middle">keresAzonositoAlapjan(keresAz)</text>
+<line x1="1047.5" y1="198" x2="632.0" y2="198" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M641.0,193 L632.0,198 L641.0,203" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="839.75" y="192" font-size="12" text-anchor="middle">kör / nincs</text>
+<line x1="632.0" y1="258" x2="394.0" y2="258" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M403.0,253 L394.0,258 L403.0,263" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="513.0" y="252" font-size="12" text-anchor="middle">a meglévő kör (200, új levonás nélkül)</text>
+<line x1="632.0" y1="318" x2="875.0" y2="318" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M865.0,313 L875.0,318 L865.0,323 z" fill="#2f3b52"/>
+<text x="753.5" y="312" font-size="12" text-anchor="middle">tranzakcio(...)  START TRANSACTION</text>
+<line x1="632.0" y1="352" x2="1217.0" y2="352" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1207.0,347 L1217.0,352 L1207.0,357 z" fill="#2f3b52"/>
+<text x="924.5" y="346" font-size="12" text-anchor="middle">betolt(jatekosId, zarolassal)  SELECT … FOR UPDATE</text>
+<line x1="1217.0" y1="386" x2="632.0" y2="386" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M641.0,381 L632.0,386 L641.0,391" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="924.5" y="380" font-size="12" text-anchor="middle">egyenleg</text>
+<text x="642.0" y="414" font-size="12">tét, lépcső, fedezet ellenőrzése</text>
+<path d="M632.0,420 h34 v16 h-34" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M640.0,431 L632.0,436 L640.0,441" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<line x1="632.0" y1="490" x2="875.0" y2="490" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M865.0,485 L875.0,490 L865.0,495 z" fill="#2f3b52"/>
+<text x="753.5" y="484" font-size="12" text-anchor="middle">ROLLBACK</text>
+<line x1="632.0" y1="524" x2="394.0" y2="524" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M403.0,519 L394.0,524 L403.0,529" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="513.0" y="518" font-size="12" text-anchor="middle">hiba (422)</text>
+<line x1="632.0" y1="584" x2="1047.5" y2="584" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1037.5,579 L1047.5,584 L1037.5,589 z" fill="#2f3b52"/>
+<text x="839.75" y="578" font-size="12" text-anchor="middle">letrehoz(kor)  INSERT jatekkor (aktiv_jatekos_id)</text>
+<line x1="632.0" y1="618" x2="1403.0" y2="618" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1393.0,613 L1403.0,618 L1393.0,623 z" fill="#2f3b52"/>
+<text x="1017.5" y="612" font-size="12" text-anchor="middle">rogzit(…, &#x27;TET&#x27;, -tet)  INSERT zsetonmozgas</text>
+<line x1="632.0" y1="652" x2="1217.0" y2="652" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M1207.0,647 L1217.0,652 L1207.0,657 z" fill="#2f3b52"/>
+<text x="924.5" y="646" font-size="12" text-anchor="middle">egyenlegModosit(jatekosId, -tet)</text>
+<line x1="632.0" y1="686" x2="875.0" y2="686" stroke="#2f3b52" stroke-width="1.2"/>
+<path d="M865.0,681 L875.0,686 L865.0,691 z" fill="#2f3b52"/>
+<text x="753.5" y="680" font-size="12" text-anchor="middle">COMMIT (ütközésnél ROLLBACK, 409)</text>
+<line x1="632.0" y1="720" x2="394.0" y2="720" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M403.0,715 L394.0,720 L403.0,725" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="513.0" y="714" font-size="12" text-anchor="middle">aktív kör (201)</text>
+<line x1="394.0" y1="774" x2="105.0" y2="774" stroke="#2f3b52" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M114.0,769 L105.0,774 L114.0,779" fill="none" stroke="#2f3b52" stroke-width="1.2"/>
+<text x="249.5" y="768" font-size="12" text-anchor="middle">201 Created / 409 aktív kör / 422 érvénytelen tét</text>
+<path d="M1059.5,796 h293.0 l10,10 v30 h-303.0 z" fill="#fffbe6" stroke="#2f3b52" stroke-width="1"/>
+<text x="1067.5" y="812" font-size="11">Egyedi index: aktiv_jatekos_id és inditasi_keres_azonosito.</text>
+<text x="1067.5" y="828" font-size="11">Párhuzamos második indítás ütközik → ROLLBACK, 409.</text>
+</svg>
